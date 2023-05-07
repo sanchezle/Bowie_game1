@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Bowie Game</title>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">BOWIE GAME</h1>
+        <button class="nav-button" onclick="startGame()">Start</button>
+        <button class="nav-button" onclick="showScores()">Scores</button>
+        <button class="nav-button" onclick="showInstructions()">Instructions</button>
+    </div>
+    <script>
+        function startGame() {
+            window.location.href = "{{ url_for('bowiegame') }}";
+        }
+
+        function showScores() {
+            window.location.href = "{{ url_for('scores') }}";
+        }
+
+        function showInstructions() {
+            window.location.href = "{{ url_for('instructions') }}";
+        }
+    </script>
+</body>
+</html>
