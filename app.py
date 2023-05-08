@@ -8,7 +8,11 @@ from flask import request
 from helpers import apology, login_required
 
 # Configure application
+
 app = Flask(__name__)
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+db_path = os.path.join(BASE_DIR, "bowiegame.db")
+db = SQL(f"sqlite:///{db_path}")
 
 DATABASE="bowiegame.db"
 # Configure session to use filesystem (instead of signed cookies)
@@ -17,7 +21,7 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 # Configure CS50 Library to use SQLite database
-db = SQL("sqlite:///bowiegame.db")
+
 
 # Function to connect to the SQLite database
 def get_db():
