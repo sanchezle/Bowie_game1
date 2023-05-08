@@ -91,3 +91,10 @@ tr:nth-child(even) {
 tr:hover {
     background-color: #ddd;
 }
+
+body {
+    background-image: url('/static/background1.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
