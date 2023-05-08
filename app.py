@@ -10,6 +10,7 @@ from helpers import apology, login_required
 # Configure application
 app = Flask(__name__)
 
+DATABASE="bowiegame.db"
 # Configure session to use filesystem (instead of signed cookies)
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
@@ -17,6 +18,25 @@ Session(app)
 
 # Configure CS50 Library to use SQLite database
 db = SQL("sqlite:///bowiegame.db")
+
+# Function to connect to the SQLite database
+def get_db():
+    db = getattr(g, '_database', None)
+    if db is None:
+        db = g._database = sqlite3.connect(DATABASE)
+    return db
+
+def close_connection(exception):
+    db = getattr(g, '_database', None)
+    if db is not None:
+        db.close()
+
+@app.route('/users')
+def get_users():
+    cur = get_db().cursor()
+    cur.execute("SELECT * FROM users")
+    users = cur.fetchall()
+    # Do something with the fetched data, like return it as JSON or render a template
 
 @app.route("/")
 @login_required
