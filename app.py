@@ -20,15 +20,8 @@ db = SQL("sqlite:///bowiegame.db")
 
 @app.route("/")
 @login_required
-def index():
-    user_id = session["user_id"]
-    user = db.execute("SELECT username FROM users WHERE id = ?", user_id)
-    username = user[0]["username"]
-
-    # Replace this with the actual index_data and total_cash calculation
-    
-
-return render_template("index.html")
+def index(): 
+  return render_template("index.html")
 
 # Add the additional routes and functions that you have provided
 @app.route("/login", methods=["GET", "POST"])
