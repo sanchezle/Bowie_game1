@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Bowie Game</title>
+</head>
+<body class="game-body">
+    <div class="container">
+        <div class="game-container">
+            <img src="pictures/dog.png" alt="Dog" id="dog" class="hidden">
+            <img src="pictures/ball.png" alt="Ball" id="ball" class="hidden">
+        </div>
+        <button id="start-btn">Start</button>
+        <button id="mute-btn">Mute</button>
+        <button id="restart-btn" class="hidden">Start Again</button>
+        <div id="timer">60</div>
+        <div id="game-over" class="hidden">Game Over</div>
+    </div>
+    <audio src="pictures/background-music.mp3" id="background-music" loop autoplay></audio>
+    <script src="script.js"></script>
+</body>
+</html>
