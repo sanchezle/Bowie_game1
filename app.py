@@ -1,11 +1,11 @@
 import os
 from cs50 import SQL
-from flask import Flask, flash, redirect, render_template, request, session
+from flask import Flask, flash, redirect, render_template, request, session, Response, jsonify
 from flask_session import Session
 from tempfile import mkdtemp
 from werkzeug.security import check_password_hash, generate_password_hash
-
-from helpers import apology, login_required, lookup, usd
+from flask import request
+from helpers import apology, login_required
 
 # Configure application
 app = Flask(__name__)
@@ -28,7 +28,7 @@ def index():
     # Replace this with the actual index_data and total_cash calculation
     
 
-    return render_template("index.html")
+return render_template("index.html")
 
 # Add the additional routes and functions that you have provided
 @app.route("/login", methods=["GET", "POST"])
