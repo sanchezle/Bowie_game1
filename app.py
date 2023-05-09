@@ -8,8 +8,11 @@ from flask import request
 from helpers import apology, login_required
 
 # Configure application
+#q: are all off the routes underneaty properly indented?
+#a: yes, they are properly indented
 
 app = Flask(__name__)
+
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 db_path = os.path.join(BASE_DIR, "bowiegame.db")
 db = SQL(f"sqlite:///{db_path}")
@@ -45,7 +48,11 @@ def get_users():
 @app.route("/")
 @login_required
 def index(): 
-  return render_template("index.html")
+    if request.method == "GET":
+        return render_template("index.html")
+    else:
+        return apology("TODO")
+    
 
 # Add the additional routes and functions that you have provided
 @app.route("/login", methods=["GET", "POST"])
@@ -90,6 +97,7 @@ def logout():
 
     # Redirect user to login form
     return redirect("/")
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
@@ -128,6 +136,12 @@ def register():
 # Your provided routes
 
 # ... other routes ...
+@app.route("/game", methods=["GET", "POST"])
+def game():
+    if request.method == "GET":
+        return render_template("bowie_game.html")
+    else:
+        return apology("TODO")
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
