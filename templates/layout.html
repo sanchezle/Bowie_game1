@@ -23,11 +23,12 @@
                     <div class="collapse navbar-collapse" id="navbar">
                         {% if session["user_id"] %}
                             <ul class="navbar-nav me-auto mt-2">
-                                <li class="nav-item"><a class="nav-link" href="/history">History</a></li>
-                                <li class="nav-item"><a class="nav-link" href="/quote">Quote</a></li>
-                                <li class="nav-item"><a class="nav-link" href="/buy">Buy</a></li>
-                                <li class="nav-item"><a class="nav-link" href="/sell">Sell</a></li>
-                                <li class="nav-item"><a class="nav-link" href="/deposit">Deposit</a></li>
+                              
+                                <li class="nav-item"><a class="nav-link" href="/records">Records</a></li>
+                                <li class="nav-item"><a class="nav-link" href="/Bowie_Coin">Bowiecoin</a></li>
+                                <li class="nav-item"><a class="nav-link" href="/Store">Store</a></li>
+                                <li class="nav-item"><a class="nav-link" href="/game" id="play-button">P L A Y</a></li>
+
                             </ul>
                             <ul class="navbar-nav ms-auto mt-2">
                                 <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
@@ -36,7 +37,7 @@
                             <ul class="navbar-nav ms-auto mt-2">
                                 <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
                                 <li class="nav-item"><a class="nav-link" href="/login">Log In</a></li>
-                                <li class="nav-item"><a class="nav-link" href="/game">P L A Y</a></li>
+                                <li class="nav-item"><a class="nav-link" href="/game" id="another-reset-button">P L A Y</a></li>
                             </ul>
                         {% endif %}
                     </div>

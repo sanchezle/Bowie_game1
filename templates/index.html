@@ -1,15 +1,39 @@
 {% extends "layout.html" %}
 
-{% block title %}
-Bowie Game
-{% endblock %}
 {% block main %}
 <div class="container">
     <h1>BOWIE GAME</h1>
-    <button onclick="startGame()">Start</button>
+    <h1 name="last_score" method></h1>
+    <h1 name="username" method="get">{{ username }}</h1>
+    <h1 name="last_score" method="get"> YOUR LAST SCORE WAS {{ last_score }}</h1>
+    <button onclick="startGame()" id="play-button">Start</button>
     <button onclick="showScores()">Scores</button>
     <button onclick="showInstructions()">Instructions</button>
 </div>
+
+<div>
+    <table method="get">
+        <thead>
+            <tr>
+                <th scope="col">Rank</th>
+                <th scope="col">Username</th>
+                <th scope="col">Score</th>
+                <th scope="col">Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in usershigherscore %}
+                <tr>
+                    <th scope="row">{{ loop.index }}</th>
+                    <td>{{ record.username }}</td>
+                    <td>{{ record.score }}</td>
+                    <td>{{ record.date }}</td>
+                </tr>
+            {% endfor %}
+
+    </table>
+</div>
+
 {% endblock %}
 
 {% block extra_js %}
