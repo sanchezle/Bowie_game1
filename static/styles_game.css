@@ -1,42 +1,69 @@
-* {
+body, html {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: Arial, sans-serif;
-    background-image: url('static/background.jpg');
-    background-size: cover;
-    background-position: center;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    height: 100%;
+    overflow: hidden;
 }
 
 .container {
-    text-align: center;
-    background-color: rgba(255, 255, 255, 0.8);
-    padding: 2rem;
-    border-radius: 10px;
+    background-image: url("pictures/background.jpg");
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 100%;
+    position: relative;
 }
 
-h1 {
-    margin-bottom: 1rem;
-    font-size: 2.5rem;
-    text-transform: uppercase;
+#dog {
+    position: absolute;
+    width: 1000px; /* Increase the width of the dog image */
+    height: auto;
 }
 
-button {
-    background-color: #4CAF50;
+
+#mute-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 100px;
+    padding: 5px 10px;
+    background-color: white;
     border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
     cursor: pointer;
 }
+
+#time-display{
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    width: 100px;
+    padding: 5px 10px;
+    background-color: transparent;
+    color: white;
+    border: none;
+    cursor: pointer;
+    z-index: 1;
+    font-size:2rem;
+    height: 2rem;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+#score{
+    position:absolute;
+    top: 10px;
+    right: 110px;
+    width: 100px;
+    padding: 5px 10px;
+    background-color: transparent;
+    color: white;
+    font-size: xx-large;
+    border: none;
+    cursor: pointer;
+    z-index: 1;
+}
+
+/* q: which position rule should i use if i want to place one element next to another at the same level like in a box?*/
+/* a: use relative position for the parent element and absolute position for the child element */
+/*q: which rule should i set to time-display if i want it to be at the center wihtout affecting any other of the elements ?*/
+/*q: why does the score element is a bit in  lower place than the time-display element and how can i fix it?*/
+/*a: 

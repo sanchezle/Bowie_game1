@@ -6,6 +6,8 @@ from tempfile import mkdtemp
 from werkzeug.security import check_password_hash, generate_password_hash
 from flask import request
 from helpers import apology, login_required
+from flask_socketio import SocketIO, emit
+from datetime import datetime
 
 # Configure application
 #q: are all off the routes underneaty properly indented?
@@ -24,6 +26,7 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 # Configure CS50 Library to use SQLite database
+socketio = SocketIO(app)
 
 
 # Function to connect to the SQLite database
@@ -45,14 +48,7 @@ def get_users():
     users = cur.fetchall()
     # Do something with the fetched data, like return it as JSON or render a template
 
-@app.route("/")
-@login_required
-def index(): 
-    if request.method == "GET":
-        return render_template("index.html")
-    else:
-        return apology("TODO")
-    
+
 
 # Add the additional routes and functions that you have provided
 @app.route("/login", methods=["GET", "POST"])
@@ -130,18 +126,97 @@ def register():
 
     return render_template("register.html")
 
+from datetime import datetime
 
-# ... your previous routes ...
+# Your existing code
 
-# Your provided routes
+@app.route('/update_score', methods=['POST'])
+def update_score():
+    data = request.get_json()
+    score = data.get('score', None)
+
+    if score is not None:
+        # Get the current timestamp
+        timestamp = datetime.now()
+
+        # Insert the record into the database, including the timestamp
+        db.execute("INSERT INTO scores (user_id, score, timestamp) VALUES(?, ?, ?)", session["user_id"], score, timestamp)
+
+        # Other existing code
+
+    else:
+        return jsonify({'status': 'error', 'message': 'Score not received'}), 400
+
+# Your other routes and code
+
+
+# q: when the '/updatescore' route is going to be calle?
+# a
+# just renders the templater and redirects you to index.html 5 seconds after the timer finishes
+@app.route('/game', methods=['GET', 'POST'])
+@login_required
+def game():
+    if request.method == 'POST' and request.form.get('time-display') == '0':
+        redirect(url_for('index'))
+    else:
+        return render_template('bowie_game.html')
+
+        # q: what should i place in parenthesis after url_for?
+        # a: the name of the function that renders the template you want to redirect to
+        
+@socketio.on('timer_finished')
+def on_timer_finished(data):
+    # This function will be called when the timer finishes
+    # You can get the score data from the data dictionary
+    score = data['score']
+    # Do something with the score data (e.g. save to database)
+    emit('redirect', {'url': url_for('game', _external=True)})
+
+#build a route for index.html that gets the higher 10 scores ever with the username, and the score, plus the last score of the user and the higher 10 scores of the user.
+@app.route("/", methods=["GET", "POST"])
+@login_required
+def index():
+    if request.method == "GET":
+        username = db.execute("SELECT username FROM users WHERE id = ?", session["user_id"])
+        lastuserscore = db.execute("SELECT * FROM scores WHERE id = ? ORDER BY timestamp DESC LIMIT 1", session["user_id"])
+        higheruserscores = db.execute("SELECT * FROM scores WHERE id = ? ORDER BY score DESC LIMIT 10", session["user_id"])
+        return render_template("index.html", username=username, lastuserscore=lastuserscore, higheruserscores=higheruserscores)
+    else:
+        #button to start the game
+        start = request.form.get("start")
+        
+        return apology("no sé") 
+
+@app.route("/records", methods=["GET"])
+@login_required
+def records():
+    if request.method == "GET":
+        higherscores = db.execute("SELECT * FROM scores ORDER BY score DESC LIMIT 10")
+        username = db.execute("SELECT username FROM users WHERE id = ?", session["user_id"])
+        user_records = db.execute("SELECT * FROM scores WHERE id = ? ORDER BY score DESC LIMIT 1", session["user_id"])
+        return render_template("records.html", higherscores=higherscores, username=username, user_records=user_records)
+    else:
+        return apology("no sé") 
+    
+@app.route("/store", methods=["GET"])
+def store():
+    if request.method == "GET":
+        return apology("Lo siento, no hay nada en la tienda por ahora ")
+    else:
+        return apology("Lo siento, no hay nada en la tienda por ahora")
+    
+@app.route("/Bowiecoin", methods=["GET"])
+def Bowiecoin():
+    if request.method == "GET":
+        return apology("EN PROCESO")
+    else:
+        return apology("EN PROCESO")
 
 # ... other routes ...
-@app.route("/game", methods=["GET", "POST"])
-def game():
-    if request.method == "GET":
-        return render_template("bowie_game.html")
-    else:
-        return apology("TODO")
+
+#create a route for the game that whill update the database with the score
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+#create a route for the game that whill update the database with the score
