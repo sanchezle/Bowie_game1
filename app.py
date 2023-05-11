@@ -4,7 +4,6 @@ from flask import Flask, flash, redirect, render_template, request, session, Res
 from flask_session import Session
 from tempfile import mkdtemp
 from werkzeug.security import check_password_hash, generate_password_hash
-from flask import request
 from helpers import apology, login_required
 from flask_socketio import SocketIO, emit
 from datetime import datetime
@@ -130,7 +129,7 @@ from datetime import datetime
 
 # Your existing code
 
-@app.route('/update_score', methods=['POST'])
+@app.route('/update_score', methods=["GET", "POST"])
 def update_score():
     data = request.get_json()
     score = data.get('score', None)
@@ -156,14 +155,19 @@ def update_score():
 @app.route('/game', methods=['GET', 'POST'])
 @login_required
 def game():
-    if request.method == 'POST' and request.form.get('time-display') == '0':
-        redirect(url_for('index'))
-    else:
-        return render_template('bowie_game.html')
+    if request.method == 'POST':
+        # Update score table logic here
+        score=request.form.get("score")
+        timestamp = datetime.now()
+        db.execute("INSERT INTO scores (user_id, score, timestamp) VALUES(?, ?, ?)", session["user_id"], score, timestamp)
+        # Redirect to index
+        return redirect(url_for('index'))
+ 
+    #call updateTimer function from script.js
+    
+    return render_template('bowie_game.html')
 
-        # q: what should i place in parenthesis after url_for?
-        # a: the name of the function that renders the template you want to redirect to
-        
+
 @socketio.on('timer_finished')
 def on_timer_finished(data):
     # This function will be called when the timer finishes

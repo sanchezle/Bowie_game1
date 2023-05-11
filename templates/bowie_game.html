@@ -4,21 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Move My Dog</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="static/styles_game.css">
+    <script src="static/script.js"></script>
     <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <script>
+        $(document).ready(function() {
+           updateTimer(); // This function will be called when the page loads
+       });
+   </script>
 </head>
 <body>
-    <!--add score counter element-->
-    <!-- q:is it time display element suitable for a timer in the tope middle?-->
-    <!--a: -->
-    <div id="time-display"></div>
-    <div class="container" id="score-container">
-        <h1 id="score">Score: 0</h1>
+
     <div class="container" id="container">
+        <div class="box">
+            <button id="mute-button">M U T E</button>  
+            <div id="time-display"></div>
+            <div id="score">Score: 0</div>
+        </div>
         <img src="static/pictures/dog.png" alt="Dog" id="dog">
     </div>
     <audio src="static/background-music.mp3" id="bg-music" loop autoplay></audio>
-    <button id="mute-button">M U T E</button>
-    <script src="static/script.js"></script>
-</body>
+  
+
+    </body>
 </html>
