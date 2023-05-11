@@ -1,14 +1,15 @@
 document.addEventListener('DOMContentLoaded', function() {
   // Your entire JavaScript code here
-
-
   const dog = document.getElementById('dog');
   const container = document.getElementById('container');
   const bgMusic = document.getElementById('bg-music');
   const muteButton = document.getElementById('mute-button');
+  const scoreDisplay = document.getElementById('score');
+  const timeDisplay = document.getElementById('time-display');
 
-  let time = 60;
-  let score = 0;
+  let time = 60; // Set the initial time in seconds
+  let score = 0; // Initialize the score variable
+
 
   let dogPosition = {
       top: 0,
@@ -33,11 +34,13 @@ document.addEventListener('DOMContentLoaded', function() {
     } else if (event.key === 'ArrowRight') {
         dogPosition.left += stepSize;
     }
-      else if( keydown === 's' || keydown == 'S') {
-        score += 1;
-      }
+    else if (event.key === 's' || event.key === 'S') {
+      score += 1;
+      scoreDisplay.textContent = `Score: ${score}`;
+    }
+   
     updateDogPosition();
-});
+  });
 
 
   bgMusic.volume = 0.5; // Set the volume of the background music (0 to 1)
@@ -77,65 +80,30 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
+
   function updateTimer() {
-    if (time >= 0) {
-        timeDisplay.textContent = `Time: ${time}`;
-        time--;
-        setTimeout(updateTimer, 1000);
-    } else {
-        timeDisplay.textContent = 'Time\'s up!';
+    timeDisplay.textContent = `Time: ${time}`;
 
-        // Send user's score to the /update_score route
-        sendScoreToFlask(score);
-
-        // Send timer ended event to Flask
-        fetch('/game', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({timerEnded: true})
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
-            if (data.redirect) {
-                // Redirect the user to the index page
-                window.location.href = data.redirect;
-            }
-        })
-        .catch(error => {
-            console.error('Error sending timer ended event to Flask:', error);
-        });
+    // Check if time is up
+    if (time <= 0) {
+      timesUp();
+      return;
     }
-}
 
-  function resetGame() {
-    time = 60;
-    score = 0;
-    updateTimer();
-    document.getElementById('score-display').textContent = `Score: ${score}`;
+    // Decrease time by 1 second
+    time--;
+
+    // Call the updateTimer function again after 1 second
+    setTimeout(updateTimer, 1000);
   }
 
-  document.getElementById('play-button').addEventListener('click', function() {
-    resetGame();
-  });
-
-    function resetAnotherElement() {
-      time = 60;
-      score = 0;
-      updateTimer();
-      document.getElementById('elementID').textContent = `Score: ${score}`;
-    }
-
-  document.getElementById('another-reset-button').addEventListener('click', function() {
-    resetAnotherElement();
-  });
-
+  // Call the updateTimer function to start the countdown
   updateTimer();
 
+  // Function to handle when time is up
+  function timesUp() {
+    // Perform actions when the time is up
+    console.log('Time is up!');
+    // Add your desired code here
+  }
 });

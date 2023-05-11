@@ -20,50 +20,24 @@ body, html {
     height: auto;
 }
 
-
-#mute-button {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    width: 100px;
-    padding: 5px 10px;
-    background-color: white;
-    border: none;
-    cursor: pointer;
-}
-
-#time-display{
-    position: absolute;
-    top: 40px;
-    left: 50%;
-    width: 100px;
-    padding: 5px 10px;
-    background-color: transparent;
-    color: white;
-    border: none;
-    cursor: pointer;
-    z-index: 1;
-    font-size:2rem;
-    height: 2rem;
-    font-family: sans-serif;
-    font-weight: bold;
-}
-#score{
-    position:absolute;
-    top: 10px;
-    right: 110px;
-    width: 100px;
-    padding: 5px 10px;
-    background-color: transparent;
-    color: white;
+.box {
+    display: flex;
     font-size: xx-large;
-    border: none;
-    cursor: pointer;
-    z-index: 1;
-}
+  }
 
-/* q: which position rule should i use if i want to place one element next to another at the same level like in a box?*/
-/* a: use relative position for the parent element and absolute position for the child element */
-/*q: which rule should i set to time-display if i want it to be at the center wihtout affecting any other of the elements ?*/
-/*q: why does the score element is a bit in  lower place than the time-display element and how can i fix it?*/
-/*a: 
+  #muten-button {
+    flex: 1 1 auto;
+  }
+
+  #time-display {
+    flex: 1 1 auto;
+  }
+
+  #score {
+    flex: 1 1 auto;
+  }
+
+
+
+
+  
