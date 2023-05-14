@@ -103,7 +103,31 @@ document.addEventListener('DOMContentLoaded', function() {
   // Function to handle when time is up
   function timesUp() {
     // Perform actions when the time is up
+
     console.log('Time is up!');
     // Add your desired code here
+      // Send user's score to the /game route
+  fetch('/game', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ score: score })
+  })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      if (data.redirect) {
+        // Redirect the user to the index page
+        window.location.href = data.redirect;
+      }
+    })
+    .catch(error => {
+      console.error('Error sending score to Flask:', error);
+    });
   }
 });

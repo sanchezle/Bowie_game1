@@ -5,7 +5,7 @@
     <h1>BOWIE GAME</h1>
     <h1 name="last_score" method></h1>
     <h1 name="username" method="get">{{ username }}</h1>
-    <h1 name="last_score" method="get"> YOUR LAST SCORE WAS {{ last_score }}</h1>
+    <h1 name="last_score" method="get"> YOUR LAST SCORE WAS {{ lastuserscore }}</h1>
     <button onclick="startGame()" id="play-button">Start</button>
     <button onclick="showScores()">Scores</button>
     <button onclick="showInstructions()">Instructions</button>
@@ -15,19 +15,17 @@
     <table method="get">
         <thead>
             <tr>
-                <th scope="col">Rank</th>
                 <th scope="col">Username</th>
                 <th scope="col">Score</th>
                 <th scope="col">Date</th>
             </tr>
         </thead>
         <tbody>
-            {% for record in usershigherscore %}
+            {% for record in higheruserscores %}
                 <tr>
-                    <th scope="row">{{ loop.index }}</th>
                     <td>{{ record.username }}</td>
                     <td>{{ record.score }}</td>
-                    <td>{{ record.date }}</td>
+                    <td>{{ record.timestamp }}</td>
                 </tr>
             {% endfor %}
 

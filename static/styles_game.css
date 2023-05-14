@@ -1,43 +1,38 @@
 body, html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    overflow: hidden;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
 }
 
 .container {
-    background-image: url("pictures/background.jpg");
-    background-size: cover;
-    background-position: center;
-    width: 100%;
-    height: 100%;
-    position: relative;
+  background-image: url("pictures/background.jpg");
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
 }
 
 #dog {
-    position: absolute;
-    width: 1000px; /* Increase the width of the dog image */
-    height: auto;
+  position: absolute;
+  width: 80%; /* Update the width of the dog image */
+  height: auto;
 }
 
 .box {
-    display: flex;
-    font-size: xx-large;
-  }
+  display: flex;
+  font-size: 4rem; /* Update the font size */
+}
 
-  #muten-button {
-    flex: 1 1 auto;
-  }
+#mute-button {
+  flex: 1 1 auto;
+}
 
-  #time-display {
-    flex: 1 1 auto;
-  }
+#time-display {
+  flex: 1 1 auto;
+}
 
-  #score {
-    flex: 1 1 auto;
-  }
-
-
-
-
-  
+#score {
+  flex: 1 1 auto;
+}
