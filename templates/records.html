@@ -13,12 +13,12 @@
                 </tr>
             </thead>
             <tbody>
-                {% for record in records %}
+                {% for record in higherscores %}
                     <tr>
                         <th scope="row">{{ loop.index }}</th>
                         <td>{{ record.username }}</td>
                         <td>{{ record.score }}</td>
-                        <td>{{ record.date }}</td>
+                        <td>{{ record.timestamp }}</td>
                     </tr>
                 {% endfor %}
             </tbody>
@@ -30,19 +30,17 @@
     <table>
         <thead method="get">
                 <tr>
-                    <th scope="col">Rank</th>
                     <th scope="col">Username</th>
                     <th scope="col">Score</th>
                     <th scope="col">Date</th>
                 </tr>
             </thead>
             <tbody>
-                {% for record in user_records %}
+                {% for record in user_records  %}
                     <tr>
-                        <th scope="row">{{ loop.index }}</th>
                         <td>{{ record.username }}</td>
                         <td>{{ record.score }}</td>
-                        <td>{{ record.date }}</td>
+                        <td>{{ record.timestamp }}</td>
                    </tr>
                 {% endfor %}
             </tbody>

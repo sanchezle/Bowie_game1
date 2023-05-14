@@ -1,6 +1,6 @@
 import os
 from cs50 import SQL
-from flask import Flask, flash, redirect, render_template, request, session, Response, jsonify
+from flask import Flask, flash, redirect, render_template, request, session, Response, jsonify, url_for
 from flask_session import Session
 from tempfile import mkdtemp
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -93,6 +93,7 @@ def logout():
     # Redirect user to login form
     return redirect("/")
 
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
@@ -125,28 +126,8 @@ def register():
 
     return render_template("register.html")
 
-from datetime import datetime
 
-# Your existing code
 
-@app.route('/update_score', methods=["GET", "POST"])
-def update_score():
-    data = request.get_json()
-    score = data.get('score', None)
-
-    if score is not None:
-        # Get the current timestamp
-        timestamp = datetime.now()
-
-        # Insert the record into the database, including the timestamp
-        db.execute("INSERT INTO scores (user_id, score, timestamp) VALUES(?, ?, ?)", session["user_id"], score, timestamp)
-
-        # Other existing code
-
-    else:
-        return jsonify({'status': 'error', 'message': 'Score not received'}), 400
-
-# Your other routes and code
 
 
 # q: when the '/updatescore' route is going to be calle?
@@ -157,14 +138,21 @@ def update_score():
 def game():
     if request.method == 'POST':
         # Update score table logic here
-        score=request.form.get("score")
+        score = request.json.get('score')
         timestamp = datetime.now()
         db.execute("INSERT INTO scores (user_id, score, timestamp) VALUES(?, ?, ?)", session["user_id"], score, timestamp)
         # Redirect to index
-        return redirect(url_for('index'))
- 
+         # Create the response dictionary
+        response = {
+                    'message': 'Score updated successfully',
+            'redirect': url_for('index')
+        }
+        
+        # Redirect the user to the index page
+        return jsonify(response)
+
     #call updateTimer function from script.js
-    
+
     return render_template('bowie_game.html')
 
 
@@ -181,9 +169,20 @@ def on_timer_finished(data):
 @login_required
 def index():
     if request.method == "GET":
-        username = db.execute("SELECT username FROM users WHERE id = ?", session["user_id"])
-        lastuserscore = db.execute("SELECT * FROM scores WHERE id = ? ORDER BY timestamp DESC LIMIT 1", session["user_id"])
-        higheruserscores = db.execute("SELECT * FROM scores WHERE id = ? ORDER BY score DESC LIMIT 10", session["user_id"])
+        #get the user id from the session
+        user_id = session["user_id"]
+        #get the username from the user id
+        username = db.execute("SELECT username FROM users WHERE id = ?", user_id)[0]["username"]
+        #join the scores table with the users table to get the username and the score and timestamp of the last score of the user
+        lastuserscore_dic= db.execute("SELECT score, timestamp, username FROM scores JOIN users ON scores.user_id = users.id WHERE scores.user_id = ? ORDER BY timestamp DESC LIMIT 1", user_id)
+
+        if lastuserscore_dic:
+            lastuserscore = lastuserscore_dic[0]["score"]
+        else:
+            lastuserscore = 0
+       
+        #join the scores table with the users table to get the username and the score and timestamp of the 5 higher scores of the user
+        higheruserscores = db.execute("SELECT username, score, timestamp, RANK() OVER (ORDER BY score DESC) AS rank FROM scores JOIN users ON scores.user_id = users.id  WHERE scores.user_id = ? ORDER BY score DESC LIMIT 5", user_id)
         return render_template("index.html", username=username, lastuserscore=lastuserscore, higheruserscores=higheruserscores)
     else:
         #button to start the game
@@ -195,9 +194,13 @@ def index():
 @login_required
 def records():
     if request.method == "GET":
-        higherscores = db.execute("SELECT * FROM scores ORDER BY score DESC LIMIT 10")
-        username = db.execute("SELECT username FROM users WHERE id = ?", session["user_id"])
-        user_records = db.execute("SELECT * FROM scores WHERE id = ? ORDER BY score DESC LIMIT 1", session["user_id"])
+        #join the scores table with the users table to get the a rank, username, score and timestamp of the 10 higher scores ever
+        higherscores = db.execute("SELECT username, score, timestamp, RANK() OVER (ORDER BY score DESC) AS rank FROM scores JOIN users ON scores.user_id = users.id ORDER BY score DESC LIMIT 10")
+        
+        user_records = db.execute("SELECT username, score, timestamp, RANK() OVER (ORDER BY score DESC) AS rank FROM scores JOIN users ON scores.user_id = users.id  WHERE scores.user_id = ? ORDER BY score DESC LIMIT 5", session["user_id"])
+        username_dic = db.execute("SELECT username FROM users WHERE id = ?", session["user_id"])
+        username = username_dic[0]["username"]
+       
         return render_template("records.html", higherscores=higherscores, username=username, user_records=user_records)
     else:
         return apology("no sé") 

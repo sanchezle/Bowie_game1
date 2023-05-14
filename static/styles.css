@@ -1,18 +1,18 @@
 /* Size for brand */
 nav .navbar-brand {
-    font-size: xx-large;
+    font-size: 4rem;
 }
 
 nav.navbar {
     height: 10%;
-    background-color: rgba(0, 0, 0, 0.25); /* Change the 0.5 value to adjust the opacity */
+    background-color: rgba(0, 0, 0, 0.25); /* Change the 0.25 value to adjust the opacity */
 }
 
 .r_form {
     margin-bottom: 1rem !important;
 }
 
-*, {
+*, *::before, *::after {
     box-sizing: border-box;
 }
 
@@ -30,7 +30,7 @@ table {
 
 th, td {
     border: 1px solid #ddd;
-    padding: 8px;
+    padding: 1rem;
     text-align: center;
 }
 
@@ -47,26 +47,24 @@ tr:hover {
     background-color: #ddd;
 }
 
-
 .dog-image {
     position: fixed;
-    bottom: -190px;
+    bottom: -30%;
     left: 0;
-    z-index: -1; /* To ensure the image is displayed below other elements */
-    width: auto; /* Add this line */
-    height: auto; /* Add this line */
-    max-width: 100%; /* Add this line */
-    max-height: 100%; /* Add this line */
+    z-index: -1;
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
 }
 
 .ball-image {
     position: fixed;
     bottom: 0;
     right: 0;
-    width: 14%; /* Reduce the size to a quarter */
-    z-index: -1; /* To ensure the image is displayed below other elements */
+    width: 14%;
+    z-index: -1;
 }
-
 
 /* 3D effect and color for span within the navbar-brand */
 nav .navbar-brand span {
