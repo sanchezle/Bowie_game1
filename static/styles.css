@@ -1,20 +1,23 @@
 /* Size for brand */
 nav .navbar-brand {
+    background-color: black;
     white-space: pre;
-    font-size: 1.5r
+    font-size: 1.5r;
+    color: white;
+    font-weight: bold;
 }
 
 nav.navbar {
     height: 10%;
-    background-color: rgba(0, 0, 0, 0.25); /* Change the 0.5 value to adjust the opacity */
+    background-color:black; /* Change the 0.5 value to adjust the opacity */
 }
 
 .r_form {
     margin-bottom: 1rem !important;
 }
 
-*, {
-    outline: 1px solid (255,0,0,0.2) !important;
+* {
+    
     box-sizing: border-box;
 }
 
@@ -51,21 +54,21 @@ tr:hover {
 
 
 .dog-image {
-    position: fixed;
-    bottom: -190px;
+    position: static;
+    bottom: 100px;
     left: 0;
     z-index: -1; /* To ensure the image is displayed below other elements */
     width: auto; /* Add this line */
     height: auto; /* Add this line */
-    max-width: 100%; /* Add this line */
+    max-width: 50%; /* Add this line */
     max-height: 100%; /* Add this line */
 }
 
 .ball-image {
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    width: 14%; /* Reduce the size to a quarter */
+    position: relative;
+    bottom: -37px;
+    right: -110px;
+    width: 11%; /* Reduce the size to a quarter */
     z-index: -1; /* To ensure the image is displayed below other elements */
 }
 
@@ -74,4 +77,19 @@ tr:hover {
 nav .navbar-brand span {
     text-shadow: 1px 1px 2px #333, -1px -1px 2px #333, 1px -1px 2px #333, -1px 1px 2px #333, 0px 0px 3px #fff;
     color: #e1e5ec;
+}
+
+.pictures-container {
+    position: relative;
+
+}
+
+.navar-nav {
+    color: white;
+    font-weight: bold;
+}
+
+.navbar-toggler {
+    background-color: darkgray;
+    border: 1px solid red;
 }
