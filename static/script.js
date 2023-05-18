@@ -49,7 +49,8 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }, 20);
   }
-
+  jump();
+  
   document.addEventListener('keydown', function(event) {
     const stepSize = 15;
       if (event.key === 'ArrowUp') {
@@ -72,7 +73,8 @@ document.addEventListener('DOMContentLoaded', function() {
       const stepSize = 15;
 
       if (direction === 'up') {
-        dogPosition.top -= stepSize;
+        // call the jump function when the up arrow is clicked
+        jump(); 
       } else if (direction === 'down') {
         dogPosition.top += stepSize;
       } else if (direction === 'left') {
