@@ -155,6 +155,28 @@ def game():
 
     return render_template('bowie_game.html')
 
+@app.route('/game2', methods=['GET', 'POST'])
+@login_required
+def game2():
+    if request.method == 'POST':
+        # Update score table logic here
+        score = request.json.get('score')
+        timestamp = datetime.now()
+        db.execute("INSERT INTO scores (user_id, score, timestamp) VALUES(?, ?, ?)", session["user_id"], score, timestamp)
+        # Redirect to index
+         # Create the response dictionary
+        response = {
+                    'message': 'Score updated successfully',
+            'redirect': url_for('index')
+        }
+        
+        # Redirect the user to the index page
+        return jsonify(response)
+
+    #call updateTimer function from script.js
+
+    return render_template('test.html')
+
 
 @socketio.on('timer_finished')
 def on_timer_finished(data):
