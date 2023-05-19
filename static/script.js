@@ -6,88 +6,113 @@ document.addEventListener('DOMContentLoaded', function() {
   const scoreDisplay = document.getElementById('score');
   const timeDisplay = document.getElementById('time-display');
   const ball = document.getElementById('ball');
+  const arrowButtons = document.getElementById('arrow-buttons');
+
+
 
   let time = 60; // Set the initial time in seconds
   let score = 0; // Initialize the score variable
-  let bottom = 0; // Initialize the bottom variable
-  let gravity = 0.9; // Set the gravity variable
-  let jumpHeight = 300; // Set the jump height variable
-  let isJumping = false; // Track if the dog is currently jumping
+  let bottom = 0;
+  let gravity = 0.9;
+  let isJumping = false;
+  let isGoingLeft = false;
+  let isGoingRight = false;
+  let left = 0;
+  let leftTimerId;
+  let rightTimerId;
 
-  let dogPosition = {
-    top: 0,
-    left: 0,
-  };
 
-  function updateDogPosition() {
-    dog.style.top = dogPosition.top + 'px';
-    dog.style.left = dogPosition.left + 'px';
-  }
-
-  function jump() {
-    if (isJumping) return;
-
-    isJumping = true;
-
-    let jumpInterval = setInterval(function() {
-      if (bottom >= jumpHeight) {
-        clearInterval(jumpInterval);
-
-        let fallInterval = setInterval(function() {
-          if (bottom <= 0) {
-            clearInterval(fallInterval);
-            bottom = 0;
+  function jump(){
+    if(isJumping) return;
+    let timerId =setInterval(function(){
+      if(bottom > 400){
+      clearInterval(timerId)
+        let timerDownId = setInterval(function(){
+          if(bottom < 0){
+            clearInterval(timerDownId)
             isJumping = false;
-          } else {
-            bottom -= 5;
-            dog.style.bottom = bottom + 'px';
           }
+          bottom -= 10
+          dog.style.bottom = bottom + 'px';
         }, 20);
-      } else {
-        bottom += 5;
-        dog.style.bottom = bottom + 'px';
       }
-    }, 20);
+      isJumping = true;
+      bottom += 50;
+      bottom = bottom * gravity;
+      console.log(bottom)
+      dog.style.bottom = bottom + 'px';
+      }, 20);
   }
-  jump();
-  
-  document.addEventListener('keydown', function(event) {
-    const stepSize = 15;
-      if (event.key === 'ArrowUp') {
-        dogPosition.top -= stepSize;
-    } else if (event.key === 'ArrowDown') {
-      dogPosition.top += stepSize;
-    } else if (event.key === 'ArrowLeft') {
-      dogPosition.left -= stepSize;
-    } else if (event.key === 'ArrowRight') {
-      dogPosition.left += stepSize;
+ 
+  function slideLeft(){
+      if (isGoingRight) {
+        clearInterval(rightTimerId);
+        isGoingRight = false;
+      }
+      isGoingLeft = true;
+      leftTimerId = setInterval(function(){
+        left -= 5; 
+        console.log('going left')
+        dog.style.left = left + 'px';
+      }, 20);
+  }
+
+  function slideRight(){
+      if (isGoingLeft) {
+        clearInterval(leftTimerId);
+        isGoingLeft = false;
+      }
+      isGoingRight = true;
+      rightTimerId = setInterval(function(){
+        left += 5;
+        console.log('going right')
+        dog.style.left = left + 'px';
+      }, 20);
+  }
+
+  function stopSliding(){
+      console.log('stop sliding')
+      clearInterval(leftTimerId);
+      clearInterval(rightTimerId);
+      isGoingLeft = false;
+      isGoingRight = false;
+  }
+
+  function control(e){
+      if(e.keyCode === 32){
+        jump();
+    } else if(e.keyCode === 37){
+        slideLeft();//if you want to slide left
+    } else if(e.keyCode === 39){
+        slideRight();//if you want to slide right
+    } else if(e.keyCode === 40){
+      stopSliding();//if you want to stop sliding
     }
-
-    updateDogPosition();
-  });
-
-  // Move the dog based on arrow button clicks
+  }
+  document.addEventListener('keydown', control);
+  // Event listener for the jump function
+  // create a function for arrows to triger jump, slide left, slide right functions.
   document.querySelectorAll('.arrow-button').forEach(button => {
     button.addEventListener('click', function(event) {
       const direction = event.target.getAttribute('id');
-      const stepSize = 15;
-
-      if (direction === 'up') {
+    
+        if (direction === "up") {
         // call the jump function when the up arrow is clicked
         jump(); 
-      } else if (direction === 'down') {
-        dogPosition.top += stepSize;
-      } else if (direction === 'left') {
-        dogPosition.left -= stepSize;
-      } else if (direction === 'right') {
-        dogPosition.left += stepSize;
-      }
+      } else if (direction === "down") {
+        
+          stopSliding();
 
-      updateDogPosition();
+      } else if (direction === "left") {
+          
+          slideLeft();
+
+      } else if (direction === "right") {
+        
+          slideRight();
+      }
     });
   });
-
-  // Event listener for the jump function
 
   // Rest of your code...
  //q: why the arrow buttons are not working?
@@ -98,17 +123,17 @@ document.addEventListener('DOMContentLoaded', function() {
   //a: because the arrow buttons are not in the container div
   //q: which cointainer div?
 
-    bgMusic.volume = 0.5; // Set the volume of the background music (0 to 1)
+  bgMusic.volume = 0.5; // Set the volume of the background music (0 to 1)
 
-    muteButton.addEventListener('click', function() {
-        if (bgMusic.muted) {
-            bgMusic.muted = false;
-            muteButton.textContent = 'Mute';
-        } else {
-            bgMusic.muted = true;
-            muteButton.textContent = 'Unmute';
-        }
-    });
+  muteButton.addEventListener('click', function() {
+    if (bgMusic.muted) {
+      bgMusic.muted = false;
+      muteButton.textContent = 'Mute';
+    } else {
+      bgMusic.muted = true;
+      muteButton.textContent = 'Unmute';
+      }
+  });
     // q: why do the arrows button not work?
     // a: because the arrow buttons are not in the container div
 
@@ -143,7 +168,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Check if time is up
     if (time <= 0) {
-      timesUp();
+      //timesUp();
       return;
     }
 
@@ -187,6 +212,7 @@ document.addEventListener('DOMContentLoaded', function() {
       console.error('Error sending score to Flask:', error);
     });
   }
+
 
 });
 
