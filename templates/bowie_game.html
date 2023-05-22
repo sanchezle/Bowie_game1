@@ -1,41 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Move My Dog</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="static/styles_game.css">
-    <script src="static/script.js"></script>
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <script>
-        $(document).ready(function() {
-            updateTimer(); // This function will be called when the page loads
-        });
-    </script>
-</head>
-<body>
-    <div class="container" id="container">
-        <div class="box">
-            <button id="mute-button">M U T E</button>
-            <div id="time-display"></div>
-            <div id="score">Score: 0</div>
-      
-        </div>
-            <img src="static/pictures/ground.png" alt="floor" id="floor">
-                <img src="static/pictures/dog.png" alt="Dog" id="dog">
-                <img src="static/pictures/ball.png" alt="Ball" id="ball">
-        <div class="arrow-buttons">
-                <button class="arrow-button" id="left">◄</button>
-            <div>
-                <button class="arrow-button" id="up">▲</button>
-                <button class="arrow-button stop-button" id="down">Stop</button>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Move My Dog</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="static/styles_game.css">
+        <script src="static/script.js"></script>
+    </head>
+    <body>
+        <div class="container" id="container">
+            <div class="box">
+                <button id="mute-button">M U T E</button>
+                <div id="time-display"></div>
+                <div id="score">Score: 0</div>
             </div>
-                <button class="arrow-button" id="right">►</button>
-          </div>          
-        <div>
-            <audio src="static/background-music.mp3" id="bg-music" loop autoplay></audio>
+                <img src="static/pictures/ground.png" alt="floor" id="floor">
+                    <img src="static/pictures/dog.png" alt="Dog" id="dog">
+                    <img src="static/pictures/ball.png" alt="Ball" id="ball">
+            <div class="arrow-buttons">
+                    <button class="arrow-button" id="left">◄</button>
+                <div>
+                    <button class="arrow-button" id="up">▲</button>
+                    <button class="arrow-button stop-button" id="down">Stop</button>
+                </div>
+                    <button class="arrow-button" id="right">►</button>
+            </div>          
+                <div class="height-display" id="heightDisplay"></div>
+            <div>
+                <audio src="static/background-music.mp3" id="bg-music" loop autoplay></audio>
+            </div>
         </div>
-    
-</body>
+    </body>
 </html>

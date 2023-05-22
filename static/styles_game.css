@@ -128,7 +128,23 @@ body, html {
 #ball {
   position: absolute;
   width: 12%;
-  bottom: 0;
+  bottom: 80%;
   right: 0;
   z-index: 2;
+}
+
+.height-display {
+  position: fixed;
+  top: 50%;
+  right: 5px;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 10px;
+  font-size: 16px;
+  height: 20%;
+  display: flex;
+  align-items: flex-end;
+  writing-mode: vertical-rl;
+  text-orientation: upright;
 }
