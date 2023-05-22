@@ -176,7 +176,7 @@ document.addEventListener('DOMContentLoaded', function() {
   document.addEventListener('keydown', control);
   
   document.querySelectorAll('.arrow-buttons').forEach(button => {
-    button.addEventListener('mousedown', (event) => {
+    button.addEventListener('pointerdown', (event) => {
       const direction = event.target.getAttribute('id');
       if (direction === "up") {
         clearInterval(heightTimerId);
@@ -185,7 +185,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   
-    button.addEventListener('mouseup', (event) => {
+    button.addEventListener('pointerup', (event) => {
       const direction = event.target.getAttribute('id');
       if (direction === "up") {
         jump();
