@@ -19,6 +19,8 @@ nav.navbar {
 * {
     
     box-sizing: border-box;
+    border:0;
+    padding:0;
 }
 
 div {

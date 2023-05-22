@@ -1,87 +1,134 @@
 document.addEventListener('DOMContentLoaded', function() {
-   const dog = document.getElementById('dog');
-
-    let bottom = 10;
-    let gravity = 0.9;
-    let isJumping = false;
-    let isGoingLeft = false;
-    let isGoingRight = false;
-    let left = 0;
-    let leftTimerId;
-    let rightTimerId;
-
-
-   function jump(){
-    if(isJumping) return;
-    let timerId =setInterval(function(){
-      if(bottom > 300){
-      clearInterval(timerId)
-        let timerDownId = setInterval(function(){
-          if(bottom < 10){
-            clearInterval(timerDownId)
-            isJumping = false;
-          }
-          bottom -= 10
-          dog.style.bottom = bottom + 'px';
-        }, 20);
-      }
-      isJumping = true;
-      bottom += 50;
-      bottom = bottom * gravity;
-      console.log(bottom)
-      dog.style.bottom = bottom + 'px';
-      }, 20);
-   }
-   
-   function slideLeft(){
-      if (isGoingRight){
-        clearInterval(rightTimerId);
-        isGoingRight = false;
-      }
-      isGoingLeft = true;
-      leftTimerId = setInterval(function(){
-        left -= 5; 
-        console.log('going left')
-        dog.style.left = left + 'px';
-      }, 20);
-   }
-
-   function slideRight(){
-      if (isGoingLeft) {
-        clearInterval(leftTimerId);
-        isGoingLeft = false;
-      }
-      isGoingRight = true;
-      rightTimerId = setInterval(function(){
-        left += 5;
-        console.log('going right')
-        dog.style.left = left + 'px';
-      }, 20);
-   }
-
-   function stopSliding(){
-      console.log('stop sliding')
-      isGoingLeft = false;
-      isGoingRight = false;
-      clearInterval(leftTimerId);
-      clearInterval(rightTimerId);
-   }
-//why stopSliding() is not working at some point?
-//a:
-
-   function control(e){
-        if(e.keyCode === 40){
-        stopSliding();//if you want to stop sliding
-      } else if(e.keyCode === 32){
-          jump();
-      } else if(e.keyCode === 37){
-          slideLeft();//if you want to slide left
-      } else if(e.keyCode === 39){
-          slideRight();//if you want to slide right
-      } 
-   }
-  document.addEventListener('keydown', control);
-
-  });
+  const canvas = document.getElementById('game-canvas');
+  const container = document.getElementById('container');
+  const context = canvas.getContext('2d');
+  const bgMusic = document.getElementById('bg-music');
+  const muteButton = document.getElementById('mute-button');
+  const scoreDisplay = document.getElementById('score');
+  const timeDisplay = document.getElementById('time-display');
+  const elementsToMove = ['floor', 'dog', 'ball', 'left', 'up', 'down', 'right'];
   
-   
+  // Set canvas size to match background image
+  const backgroundImage = new Image();
+  backgroundImage.src = 'static/images/background.png';
+
+  elementsToMove.forEach(elementId => {
+    const element = document.getElementById(elementId);
+    canvas.appendChild(element);
+  });
+
+
+
+
+  let time = 60; // Set the initial time in seconds
+  let score = 0; // Initialize the score variable
+
+  // Function to update the score
+  function updateScore() {
+    score++;
+    scoreDisplay.textContent = `Score: ${score}`;
+  }
+  updateScore();
+
+  // Function to update the timer
+  function updateTimer() {
+    timeDisplay.textContent = `Time: ${time}`;
+
+    // Check if time is up
+    if (time <= 0) {
+      timesUp();
+      return;
+    }
+
+    // Decrease time by 1 second
+    time--;
+
+    // Call the updateTimer function again after 1 second
+    setTimeout(updateTimer, 1000);
+  }
+
+  // Call the updateTimer function to start the countdown
+  updateTimer();
+
+  // Function to handle when time is up
+  function timesUp() {
+    console.log('Time is up!');
+    // Perform actions when the time is up
+
+    // Send the user's score to the /game route
+    fetch('/game', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ score: score })
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        if (data.redirect) {
+          // Redirect the user to the index page
+          window.location.href = data.redirect;
+        }
+      })
+      .catch(error => {
+        console.error('Error sending score to Flask:', error);
+      });
+  }
+
+  // Event listener for the mute button
+  muteButton.addEventListener('click', function() {
+    if (bgMusic.muted) {
+      bgMusic.muted = false;
+      muteButton.textContent = 'Mute';
+    } else {
+      bgMusic.muted = true;
+      muteButton.textContent = 'Unmute';
+    }
+  });
+
+  // Dog variables
+  const dogWidth = 100;
+  const dogHeight = 100;
+  let dogX = canvas.width / 2 - dogWidth / 2;
+  let dogY = canvas.height - dogHeight;
+  let dogSpeed = 5;
+
+  // Arrow button variables
+  const arrowButtonSize = 50;
+
+  // Function to draw the dog on the canvas
+  function drawDog() {
+    context.fillStyle = 'brown';
+    context.fillRect(dogX, dogY, dogWidth, dogHeight);
+  }
+
+  // Function to handle keydown event
+  function handleKeyDown(event) {
+    if (event.key === 'ArrowLeft') {
+      moveDogLeft();
+    } else if (event.key === 'ArrowRight') {
+      moveDogRight();
+    }
+  }
+
+  // Function to handle keyup event
+  function handleKeyUp(event) {
+    if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+      stopDog();
+    }
+  }
+
+  // Function to move the dog to the left
+  function moveDogLeft() {
+    dogX -= dogSpeed;
+    if (dogX < 0) {
+      dogX = 0;
+    }
+  }
+
+});
