@@ -266,7 +266,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Check if time is up
     if (time <= 0) {
-      //timesUp();
+      timesUp();
       return;
     }
 
