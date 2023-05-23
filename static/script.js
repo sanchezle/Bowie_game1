@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const ball = document.getElementById('ball');
   const arrowButtons = document.getElementById('arrow-buttons');
   const heightDisplay = document.getElementById('heightDisplay');
+  const bark = document.getElementById('bark');
 
 
   let time = 60; // Set the initial time in seconds
@@ -45,15 +46,22 @@ document.addEventListener('DOMContentLoaded', function() {
 
     //stops the interval when the currentHeight is equal to the maxHeight and current height stops increasing
     if (currentHeight >= maxHeight) {
+      bark.play();
       currentHeight = maxHeight;
       clearInterval(heightTimerId);  
     } 
+    // play bark.mp3 just once when the height reach 80% of the maxHeight;
+  
+      
+    // Increase the height by 20px
     currentHeight += 20;
-    console.log("height: " + currentHeight);
-    // Update the height of the element
+
+    // Update the height of the element with percentage value
     heightDisplay.style.height = currentHeight + 'px';
+  
     // Update the height display
-    heightDisplay.textContent = 0;
+    heightDisplay.textContent = 'J U M P';
+    
     return currentHeight; 
   }
 
