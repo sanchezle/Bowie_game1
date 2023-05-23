@@ -133,18 +133,25 @@ body, html {
   z-index: 2;
 }
 
-.height-display {
+#heightDisplay {
   position: fixed;
-  top: 50%;
-  right: 5px;
-  transform: translateY(-50%);
-  background-color: rgba(0, 0, 0, 0.5);
+  bottom: 25%;
+  right: 10px;
+  border-radius: 30%;
+  transform: translateX(50%);
+  background: linear-gradient(to top, green, yellow, red);
   color: white;
+  border: 1px solid white;
   padding: 10px;
   font-size: 16px;
-  height: 20%;
+  height: 100px;
+  width: 20px;
   display: flex;
   align-items: flex-end;
   writing-mode: vertical-rl;
   text-orientation: upright;
+  transform-origin: bottom;
+  transition: height 0.3s;
+  z-index: 2;
+  overflow: hidden; /* Add this line to hide the overflow */
 }
