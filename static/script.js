@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', function() {
   function keyupHandler(event) {
     if (event.keyCode === 32) {
        // Spacebar key code
-      
+
       jump();
     }
   }
@@ -185,6 +185,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
   document.addEventListener('keydown', control);
+  //control for arrow buttons for mobile
   
   document.querySelectorAll('.arrow-buttons').forEach(button => {
     button.addEventListener('pointerdown', (event) => {
@@ -203,6 +204,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   });
+  
   // create a function for arrows to triger jump, slide left, slide right functions.
   document.querySelectorAll('.arrow-button').forEach(button => {
     button.addEventListener('click', function(event) {

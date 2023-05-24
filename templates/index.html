@@ -1,17 +1,16 @@
 {% extends "layout.html" %}
 
 {% block main %}
-<div class="container">
-    <h1>BOWIE GAME</h1>
-    <h1 name="last_score" method></h1>
+        <a id="play-button2" href="/game">PLAY</a>
+
+<div class="index items">
+    <h1 id id="title">BOWIE GAME</h1>
     <h1 name="username" method="get">{{ username }}</h1>
     <h1 name="last_score" method="get"> YOUR LAST SCORE WAS {{ lastuserscore }}</h1>
-    <button onclick="startGame()" id="play-button">Start</button>
-    <button onclick="showScores()">Scores</button>
-    <button onclick="showInstructions()">Instructions</button>
 </div>
 
 <div>
+
     <table method="get">
         <thead>
             <tr>
@@ -32,20 +31,6 @@
     </table>
 </div>
 
-{% endblock %}
 
-{% block extra_js %}
-<script>
-    function startGame() {
-        window.location.href = "{{ url_for('bowiegame') }}";
-    }
 
-    function showScores() {
-        window.location.href = "{{ url_for('scores') }}";
-    }
-
-    function showInstructions() {
-        window.location.href = "{{ url_for('instructions') }}";
-    }
-</script>
 {% endblock %}
