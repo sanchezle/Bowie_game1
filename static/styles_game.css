@@ -132,11 +132,10 @@ body, html {
   right: 0;
   z-index: 2;
 }
-
 #heightDisplay {
   position: fixed;
   bottom: 25%;
-  right: 10px;
+  right: 20px;
   border-radius: 30%;
   transform: translateX(50%);
   background: linear-gradient(to top, green, yellow, red);
@@ -144,7 +143,7 @@ body, html {
   border: 1px solid white;
   padding: 10px;
   font-size: 16px;
-  height: 100px;
+  height: calc(66.66% - 20px);
   width: 20px;
   display: flex;
   align-items: flex-end;
@@ -152,6 +151,48 @@ body, html {
   text-orientation: upright;
   transform-origin: bottom;
   transition: height 0.3s;
+  z-index: 1;
+  overflow: hidden;
+  opacity: 0.5; /* Add the opacity property */
+}
+
+.bubble {
+  position: absolute;
+  top: 400px;
+  left: 50%;
+  bottom: 50vh;
+  width: 60px;
+  height: 60px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 2px #fff, inset -5px 5px 7.5px #020131,
+  inset 2.5px 2.5px 5px #960101, inset -2.5px 2.5px 2px #fff,
+  inset 7.5px 12.5px 4px #3c026c;
   z-index: 2;
-  overflow: hidden; /* Add this line to hide the overflow */
+}
+
+.bubble-two{
+  box-shadow: inset 0 0 0 2px #fff, inset -5px 5px 7.5px #06f3df,
+  inset 2.5px 2.5px 5px #f8e63e, inset -2.5px 2.5px 2px #fff,
+  inset 7.5px 12.5px 4px #ed24aa;
+ 
+}
+.bubble-three{
+  box-shadow: inset 0 0 0 2px #010631, inset -5px 5px 7.5px #1512f3,
+  inset 2.5px 2.5px 5px #80036b, inset -2.5px 2.5px 2px #fff,
+  inset 7.5px 12.5px 4px #33114e;
+ 
+}
+.bubble-four{
+  box-shadow: inset 0 0 0 2px #8b0101, inset -5px 5px 7.5px #f6f6fc,
+  inset 2.5px 2.5px 5px #81f733, inset -2.5px 2.5px 2px #fff,
+  inset 7.5px 12.5px 4px #0b0822;
+ 
+}
+.bubble-five{
+  box-shadow: inset 0 0 0 2px #fff, inset -5px 5px 7.5px #100dee,
+  inset 2.5px 2.5px 5px #f7a120, inset -2.5px 2.5px 2px #fff,
+  inset 7.5px 12.5px 4px #ed24c1;
+
 }
