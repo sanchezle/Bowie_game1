@@ -9,6 +9,9 @@ document.addEventListener('DOMContentLoaded', function() {
   const arrowButtons = document.getElementById('arrow-buttons');
   const heightDisplay = document.getElementById('heightDisplay');
   const bark = document.getElementById('bark');
+  const windowWidth = parseInt(window.getComputedStyle(container).getPropertyValue('width'));
+  const windowHeight = parseInt(window.getComputedStyle(container).getPropertyValue('height'));
+  const pop = document.getElementById('pop');
 
 
   let time = 60; // Set the initial time in seconds
@@ -220,14 +223,70 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  // Rest of your code...
- //q: why the arrow buttons are not working?
-  //a: because the arrow buttons are not in the container div
-  //q: why the dog is not moving?
-  //a: because the dogPosition is not updated
-  //q: why the dog is not moving when the arrow buttons are clicked?  
-  //a: because the arrow buttons are not in the container div
-  //q: which cointainer div?
+
+
+
+  let bubbles = ['one', 'two', 'three', 'four', 'five'];
+
+  function createBubble() {
+    let div = document.createElement('div');
+    let randomBubble = Math.floor(Math.random() * bubbles.length);
+    div.className = 'bubble bubble-' + bubbles[randomBubble];
+  
+    // Determine the height of the bubble within a range above 60% of the bottom
+    let randomHeight = Math.floor((Math.random() * (window.innerHeight * 0.40)) + (window.innerHeight * 0.60));
+    div.style.left = window.innerWidth + 'px';
+    div.style.bottom = randomHeight + 'px';
+  
+    // Randomize the width of the bubble between 40px and 120px
+    let randomWidth = Math.floor(Math.random() * 81) + 20;
+    div.style.width = randomWidth + 'px';
+    div.style.height = randomWidth + 'px';
+  
+    document.body.appendChild(div);
+    animateBubble(div);
+  }
+  
+  function animateBubble(bubble) {
+    let left = parseInt(bubble.style.left);
+    let speed = Math.random() * 2 + 1; // Variable speed for each bubble
+    let points = 1; // Points to increase for each bubble pop by the dog
+  
+    let animationId = setInterval(function() {
+      if (left < -200) {
+        bubble.remove();
+        clearInterval(animationId);
+      } else if (collisionWithDog(bubble)) {
+        bubble.remove();
+        pop.play();
+        clearInterval(animationId);
+        score += points;
+        updateScore();
+      } else {
+        left -= speed;
+        bubble.style.left = left + 'px';
+      }
+    }, 10);
+  }
+  
+  function collisionWithDog(bubble) {
+    let dogRect = dog.getBoundingClientRect();
+    let bubbleRect = bubble.getBoundingClientRect();
+  
+    return (
+      dogRect.left < bubbleRect.right &&
+      dogRect.right > bubbleRect.left &&
+      dogRect.top < bubbleRect.bottom &&
+      dogRect.bottom > bubbleRect.top
+    );
+  }
+  
+  setInterval(createBubble, 1000); // Create a bubble every second
+   // Create a bubble every second
+  
+
+  // q: why bubbles are not appearing?
+  //
 
   bgMusic.volume = 0.5; // Set the volume of the background music (0 to 1)
 
