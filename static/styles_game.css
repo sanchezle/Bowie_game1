@@ -6,7 +6,7 @@ body, html {
 }
 
 .container {
-  background-image: url("pictures/background.jpg");
+  background-image: url("pictures/prueba3.jpg");
   background-size: cover;
   background-position: center;
   width: 100%;
@@ -34,29 +34,36 @@ body, html {
   display: flex;
   font-size: 4rem; /* Update the font size */
 }
-
 #mute-button {
-  background-color: rgba(204, 204, 204, 0.7);
-  border: none;
+  background-color: rgba(204, 204, 204, 0.533);
+  border: 1px solid #ccc;
   color: white;
   cursor: pointer;
-  border-radius: 20%;
-  flex: 1 1 auto;
+  border-radius: 50%; /* Make the border-radius 50% to create a round shape */
+  width: 60px; /* Set a fixed width */
+  height: 60px; /* Set a fixed height */
+  font-family: sans-serif;
+  font-weight: bolder;
 }
 
 #mute-button:hover {
   background-color: #aaa;
+
 }
 
 #time-display {
 
   flex: 1 1 auto;
+  transform: scale(0.75); /* Scale the element to 75% of its original size */
+  font-family: sans-serif;
 }
 
 
 #score {
-   
+
   flex: 1 1 auto;
+  transform: scale(0.75); /* Scale the element to 75% of its original size */
+  font-family: sans-serif;
 }
 
 #score, #time-display {
@@ -132,19 +139,19 @@ body, html {
   right: 0;
   z-index: 2;
 }
-#heightDisplay {
+
+.height-display {
   position: fixed;
   bottom: 25%;
   right: 20px;
-  border-radius: 30%;
   transform: translateX(50%);
   background: linear-gradient(to top, green, yellow, red);
   color: white;
   border: 1px solid white;
   padding: 10px;
   font-size: 16px;
-  height: calc(66.66% - 20px);
-  width: 20px;
+  height: 300px;
+  width: 16px;
   display: flex;
   align-items: flex-end;
   writing-mode: vertical-rl;
@@ -158,7 +165,6 @@ body, html {
 
 .bubble {
   position: absolute;
-  top: 400px;
   left: 50%;
   bottom: 50vh;
   width: 60px;

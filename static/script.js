@@ -9,8 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const arrowButtons = document.getElementById('arrow-buttons');
   const heightDisplay = document.getElementById('heightDisplay');
   const bark = document.getElementById('bark');
-  const windowWidth = parseInt(window.getComputedStyle(container).getPropertyValue('width'));
-  const windowHeight = parseInt(window.getComputedStyle(container).getPropertyValue('height'));
+
   const pop = document.getElementById('pop');
 
 
@@ -73,6 +72,7 @@ document.addEventListener('DOMContentLoaded', function() {
       clearInterval(heightTimerId);
       heightTimerId = setInterval(increaseHeight, 20);
       console.log("intervalId: " + heightTimerId);  
+
     }
     
   }
@@ -234,18 +234,19 @@ document.addEventListener('DOMContentLoaded', function() {
     div.className = 'bubble bubble-' + bubbles[randomBubble];
   
     // Determine the height of the bubble within a range above 60% of the bottom
-    let randomHeight = Math.floor((Math.random() * (window.innerHeight * 0.40)) + (window.innerHeight * 0.60));
-    div.style.left = window.innerWidth + 'px';
+    let randomHeight = Math.floor((Math.random() * (container.offsetHeight * 0.3)) + (container.offsetHeight * 0.35));
+    div.style.left = container.offsetWidth + 'px';
     div.style.bottom = randomHeight + 'px';
   
     // Randomize the width of the bubble between 40px and 120px
-    let randomWidth = Math.floor(Math.random() * 81) + 20;
+    let randomWidth = Math.floor(Math.random() * 81) + 10;
     div.style.width = randomWidth + 'px';
     div.style.height = randomWidth + 'px';
   
-    document.body.appendChild(div);
+    container.appendChild(div);
     animateBubble(div);
   }
+  
   
   function animateBubble(bubble) {
     let left = parseInt(bubble.style.left);
@@ -288,13 +289,17 @@ document.addEventListener('DOMContentLoaded', function() {
   // q: why bubbles are not appearing?
   //
 
-  bgMusic.volume = 0.5; // Set the volume of the background music (0 to 1)
+  bgMusic.volume = 0.1; // Set the volume of the background music (0 to 1)
 
   muteButton.addEventListener('click', function() {
     if (bgMusic.muted) {
       bgMusic.muted = false;
+      bark.muted = false;
+      pop.muted = false;        
       muteButton.textContent = 'Mute';
     } else {
+      bark.muted = true;
+      pop.muted = true;
       bgMusic.muted = true;
       muteButton.textContent = 'Unmute';
       }
