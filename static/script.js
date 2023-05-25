@@ -188,11 +188,11 @@ document.addEventListener('DOMContentLoaded', function() {
   //control for arrow buttons for mobile
 
   
-  
 
   document.querySelectorAll('.arrow-buttons').forEach(button => {
-    
-    button.addEventListener('pointerdown', (event) => {
+
+
+    button.addEventListener('touchstart', (event) => {
       const direction = event.target.getAttribute('id');
       if (direction === "up") {
         clearInterval(heightTimerId);
@@ -201,7 +201,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   
-    button.addEventListener('pointerup', (event) => {
+    button.addEventListener('touchend', (event) => {
       const direction = event.target.getAttribute('id');
       if (direction === "up") {
         jump();
