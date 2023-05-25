@@ -186,25 +186,33 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   document.addEventListener('keydown', control);
   //control for arrow buttons for mobile
+
   
-  document.querySelectorAll('.arrow-buttons').forEach(button => {
-    button.addEventListener('pointerdown', (event) => {
-      const direction = event.target.getAttribute('id');
-      if (direction === "up") {
-        clearInterval(heightTimerId);
-        heightTimerId = setInterval(increaseHeight, 20);
-        console.log("intervalId: " + heightTimerId);
-      }
-    });
+
+ ///
   
-    button.addEventListener('pointerup', (event) => {
-      const direction = event.target.getAttribute('id');
-      if (direction === "up") {
-        jump();
-      }
-    });
+  const jumpButton = document.getElementById('up');
+
+  jumpButton.style.userSelect = 'none';
+  jumpButton.style.webkitUserSelect = 'none';
+  jumpButton.style.mozUserSelect = 'none';
+  jumpButton.style.msUserSelect = 'none';
+  
+
+  jumpButton.addEventListener('touchstart', function(event) {
+    // Handle touchstart event
+    clearInterval(heightTimerId);
+    heightTimerId = setInterval(increaseHeight, 20);
+    console.log("intervalId: " + heightTimerId);
+    // ...
   });
-  
+
+  element.addEventListener('touchend', function(event) {
+    // Handle touchend event
+    // ...
+    jump();
+  });
+
   // create a function for arrows to triger jump, slide left, slide right functions.
   document.querySelectorAll('.arrow-button').forEach(button => {
     button.addEventListener('click', function(event) {
