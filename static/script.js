@@ -209,30 +209,32 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
   
-  arrowButtons.style.webkit-user-select; // Disable the selection of the arrow buttons
-  arrowButtons.style.moz-user-select; // Disable the selection of the arrow buttons
-  arrowButtons.style.ms-user-select; // Disable the selection of the arrow buttons
-  arrowButtons.style.user-select; // Disable the selection of the arrow buttons
-
+  //disable touch selection for arrow buttons on mobile
+  document.querySelectorAll('.arrow-buttons').forEach(button => {
+    button.addEventListener('touchstart', (event) => {
+      event.preventDefault();
+    });
+  });
+  
   // create a function for arrows to triger jump, slide left, slide right functions.
- // document.querySelectorAll('.arrow-button').forEach(button => {
-    //button.addEventListener('click', function(event) {
-      //const direction = event.target.getAttribute('id');
+  document.querySelectorAll('.arrow-button').forEach(button => {
+    button.addEventListener('click', function(event) {
+      const direction = event.target.getAttribute('id');
     
-        //if (direction === "down") {
+        if (direction === "down") {
         
-          //stopSliding();
+          stopSliding();
 
-      //} else if (direction === "left") {
+      } else if (direction === "left") {
           
-          //slideLeft();
+          slideLeft();
 
-      //} else if (direction === "right") {
+      } else if (direction === "right") {
         
-          //slideRight();
-      //}
-    //});
-  //});
+          slideRight();
+      }
+    });
+  });
 
 
 
@@ -302,7 +304,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   bgMusic.volume = 0.3; // Set the volume of the background music (0 to 1)
 
-  muteButton.addEventListener('touchstart', function() {
+  muteButton.addEventListener('click', function() {
     if (bgMusic.muted) {
       bgMusic.muted = false;
       bark.muted = false;
