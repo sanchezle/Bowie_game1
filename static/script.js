@@ -209,6 +209,11 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
   
+  arrowButtons.style.webkit-user-select; // Disable the selection of the arrow buttons
+  arrowButtons.style.moz-user-select; // Disable the selection of the arrow buttons
+  arrowButtons.style.ms-user-select; // Disable the selection of the arrow buttons
+  arrowButtons.style.user-select; // Disable the selection of the arrow buttons
+  
   // create a function for arrows to triger jump, slide left, slide right functions.
   document.querySelectorAll('.arrow-button').forEach(button => {
     button.addEventListener('click', function(event) {
