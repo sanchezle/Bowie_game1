@@ -188,26 +188,27 @@ document.addEventListener('DOMContentLoaded', function() {
   //control for arrow buttons for mobile
 
   
-
- ///
-  
-  const jumpButton = document.getElementById('up');
   
 
-  jumpButton.addEventListener('touchstart', function(event) {
-    // Handle touchstart event
-    clearInterval(heightTimerId);
-    heightTimerId = setInterval(increaseHeight, 20);
-    console.log("intervalId: " + heightTimerId);
-    // ...
+  document.querySelectorAll('.arrow-buttons').forEach(button => {
+    
+    button.addEventListener('pointerdown', (event) => {
+      const direction = event.target.getAttribute('id');
+      if (direction === "up") {
+        clearInterval(heightTimerId);
+        heightTimerId = setInterval(increaseHeight, 20);
+        console.log("intervalId: " + heightTimerId);
+      }
+    });
+  
+    button.addEventListener('pointerup', (event) => {
+      const direction = event.target.getAttribute('id');
+      if (direction === "up") {
+        jump();
+      }
+    });
   });
-
-  element.addEventListener('touchend', function(event) {
-    // Handle touchend event
-    // ...
-    jump();
-  });
-
+  
   // create a function for arrows to triger jump, slide left, slide right functions.
   document.querySelectorAll('.arrow-button').forEach(button => {
     button.addEventListener('click', function(event) {
@@ -294,7 +295,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // q: why bubbles are not appearing?
   //
 
-  bgMusic.volume = 0.1; // Set the volume of the background music (0 to 1)
+  bgMusic.volume = 0.3; // Set the volume of the background music (0 to 1)
 
   muteButton.addEventListener('click', function() {
     if (bgMusic.muted) {
