@@ -94,19 +94,30 @@ nav .navbar-brand span {
 }
 
 .navbar-toggler {
-    background-color: darkgray;
-    border: 1px solid red;
+    color: white;
+    border : 1px solid white;
+    background-color: black;
+    font-size: 14px;
+    font-weight: bold;
+    width: 60px;
 }
 
 
 #play-button2 {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    min-width: 150px;
+    box-sizing: border-box;
     background-color: #000;
     color: white;
     /* Make the button wider a 0.20 wider */
     width: 20%;
     /* distance within the nav.bar 40 px*/
     margin-bottom: 30px;
-    padding: 20px 50px; /* Make the button wider and taller */
+     /* Make the button wider and taller */
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -118,9 +129,9 @@ nav .navbar-brand span {
     /* add a frame like border of white 1px and 1px of distance between actual border */
     border: 1px solid white;
     border-radius: 5px;
-    font-weight: bolder;
-
-    
+    font-weight: bold;
+    /* aligns text to center*/
+    text-align: center;
 
   }
   
@@ -139,4 +150,13 @@ nav .navbar-brand span {
     color: #000; /* Black text */
     text-shadow: 1px 1px #999, 2px 2px #999, 3px 3px #999; /* 3D effect with lighter shadows */
   }
-  
+
+  #records-link{
+    margin-top: 20px;
+    display: inline-block; 
+  }
+  #cambiar{
+    margin-top: 20px;
+    display: inline-block; 
+    
+  }
