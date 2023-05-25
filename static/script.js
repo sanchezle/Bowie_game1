@@ -194,9 +194,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const jumpButton = document.getElementById('up');
 
   jumpButton.style.userSelect = 'none';
-  jumpButton.style.webkitUserSelect = 'none';
-  jumpButton.style.mozUserSelect = 'none';
-  jumpButton.style.msUserSelect = 'none';
+
   
 
   jumpButton.addEventListener('touchstart', function(event) {
