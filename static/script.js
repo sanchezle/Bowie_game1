@@ -218,24 +218,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // create a function for arrows to triger jump, slide left, slide right functions.
   document.querySelectorAll('.arrow-button').forEach(button => {
-    button.addEventListener('touchstar', function(event) {
+    button.addEventListener('touchstart', function(event) {
+      event.preventDefault(); // Prevent default touch behavior
+      
       const direction = event.target.getAttribute('id');
     
-        if (direction === "down") {
-        
-          stopSliding();
-
+      if (direction === "down") {
+        stopSliding();
       } else if (direction === "left") {
-          
-          slideLeft();
-
+        slideLeft();
       } else if (direction === "right") {
-        
-          slideRight();
+        slideRight();
       }
     });
   });
-
+  
 
 
 
