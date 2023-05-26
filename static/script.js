@@ -343,6 +343,20 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       }
 
+      function collisionWithDog(paloma) {
+        let dogRect = dog.getBoundingClientRect();
+        let palomaRect = paloma.getBoundingClientRect();
+
+        return (
+          dogRect.left < palomaRect.right &&
+          dogRect.right > palomaRect.left &&
+          dogRect.top < palomaRect.bottom &&
+          dogRect.bottom > palomaRect.top
+        );
+      }
+
+      
+
       frameChange();
     
     }
