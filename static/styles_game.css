@@ -214,5 +214,5 @@ body, html {
   background-image: url('pictures/');
   background-size: cover;
   animation: fly-animation 3s steps(9) infinite;
-  z-index: 2;
+  z-index: 3;
 }
