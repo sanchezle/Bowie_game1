@@ -160,3 +160,15 @@ nav .navbar-brand span {
     display: inline-block; 
     
   }
+  input[type="text"], input[type="password"] {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 80%;
+}
+
+.r_form {
+    border: 2px solid #ccc;
+    padding: 20px;
+    margin-bottom: 20px;
+}
