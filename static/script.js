@@ -307,7 +307,7 @@ document.addEventListener('DOMContentLoaded', function() {
       setTimeout(() => {
         flyAnimation();
         console.log('fly animation');
-      }, 30000);
+      }, 10000);
       
 
       function frameChange() {
@@ -325,9 +325,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
       function flyAnimation() {
         const animationInterval = setInterval(() => {
-          posX -= 6;
+          posX -= 8;
           paloma.style.left = `${posX}px`;
-          paloma.style.bottom = 500 + 'px';
+          paloma.style.bottom = 400 + 'px';
 
           if (posX < -200) {
             clearInterval(animationInterval);
@@ -338,7 +338,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (collisionWithDog(paloma)) {
           paloma.style.display = 'none';
           score += 40;
-          playBark();
+      
           updateScore();
         }
       }
