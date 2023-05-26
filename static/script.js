@@ -12,6 +12,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
   const pop = document.getElementById('pop');
 
+  const paloma = document.getElementById('paloma');
+
+  const containerWidth = container.offsetWidth; //
+  const containerHeight = container.offsetHeight;
+  const verticalRangeMin = containerHeight - 600; // Adjust the range as needed
+  const verticalRangeMax = containerHeight - 400; // Adjust the range as needed
 
   let time = 60; // Set the initial time in seconds
   let score = 0; // Initialize the score variable
@@ -30,6 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
   let rightTimerId;
   let movingTimerId;
   
+
   //update score function
   function updateScore() {
     score++;
@@ -291,13 +298,56 @@ document.addEventListener('DOMContentLoaded', function() {
       dogRect.bottom > bubbleRect.top
     );
   }
-  
   setInterval(createBubble, 1000); // Create a bubble every second
-   // Create a bubble every second
-  
+  // new code 
 
-  // q: why bubbles are not appearing?
-  //
+    function animateSprite() {
+      let posX = containerWidth;
+      //sets at what time flyanimation starts
+      setTimeout(() => {
+        flyAnimation();
+        console.log('fly animation');
+      }, 30000);
+      
+
+      function frameChange() {
+        let frame = 1;
+
+        setInterval(() => {
+          paloma.style.backgroundImage = `url('static/pictures/paloma${frame}.png')`;
+          frame++;
+
+          if (frame > 9) {
+            frame = 1;
+          }
+        }, 100);
+      }
+
+      function flyAnimation() {
+        const animationInterval = setInterval(() => {
+          posX -= 6;
+          paloma.style.left = `${posX}px`;
+          paloma.style.bottom = 500 + 'px';
+
+          if (posX < -200) {
+            clearInterval(animationInterval);
+            paloma.style.display = 'none';
+          }
+        }, 30);
+        //id dog collides with paloma score increases by 20 and paloma disappears
+        if (collisionWithDog(paloma)) {
+          paloma.style.display = 'none';
+          score += 40;
+          playBark();
+          updateScore();
+        }
+      }
+
+      frameChange();
+    
+    }
+
+    animateSprite();
 
   bgMusic.volume = 0.3; // Set the volume of the background music (0 to 1)
 
@@ -314,11 +364,7 @@ document.addEventListener('DOMContentLoaded', function() {
       muteButton.textContent = 'Unmute';
       }
   });
-    // q: why do the arrows button not work?
-    // a: because the arrow buttons are not in the container div
 
-  //CHECK
-  //create a score counter that adds 1 every time the dog is clicked"
 
   function sendScoreToFlask(score) {
     fetch('/update_score', {
@@ -354,7 +400,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Decrease time by 1 second
     time--;
-
     // Call the updateTimer function again after 1 second
     setTimeout(updateTimer, 1000);
   }
@@ -366,16 +411,16 @@ document.addEventListener('DOMContentLoaded', function() {
   function timesUp() {
     // Perform actions when the time is up
 
-    console.log('Time is up!');
-    // Add your desired code here
+    console.log('Time is up!')
+  
       // Send user's score to the /game route
-  fetch('/game', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ score: score })
-  })
+    fetch('/game', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ score: score })
+    })
     .then(response => {
       if (!response.ok) {
         throw new Error('Network response was not ok');
@@ -393,5 +438,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-});
+  checkPalomaAppearance();
+  // q: why does the paloma not appear?
+ 
 
+});
