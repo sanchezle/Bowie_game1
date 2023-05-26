@@ -206,3 +206,13 @@ body, html {
   inset 7.5px 12.5px 4px #ed24c1;
 
 }
+
+#paloma {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  background-image: url('pictures/');
+  background-size: cover;
+  animation: fly-animation 3s steps(9) infinite;
+  z-index: 2;
+}
