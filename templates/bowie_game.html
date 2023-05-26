@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Move My Dog</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <link rel="stylesheet" href="static/styles_game.css">
+        <link rel="stylesheet" href="styles_game.css">
         <script src="static/script.js"></script>
     </head>
     <body>
@@ -38,5 +38,18 @@
                 <audio src="static/Angry-Birds-Theme-Song.mp3" id="bg-music" loop autoplay></audio>
             </div>
         </div>
+        <script>
+            window.onload = function() {
+                var link = document.querySelector('link[rel="stylesheet"]');
+                if (window.matchMedia("(max-width: 768px)").matches) {
+                    console.log("Mobile device detected. Switching to mobile stylesheet.");
+                    link.href = "static/styles_game.css";
+                } else {
+                    console.log("Desktop device detected. Switching to desktop stylesheet.");
+                    link.href = "static/styles2.css";
+                }
+            };
+
+        </script>
     </body>
 </html>
