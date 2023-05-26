@@ -168,7 +168,21 @@ nav .navbar-brand span {
 }
 
 .r_form {
+    display: inline-block;
+    border-radius: 10px;
     border: 2px solid #ccc;
     padding: 20px;
     margin-bottom: 20px;
+    width: 40%;
+    display:block;
+    right:0;
+    align-self: center;
+}
+#registerb{
+    margin-top: 20px;
+    display: inline-block; 
+    width: 20%;
+    margin-left: 10%;
+    margin-right: 10%;
+    border: solid 1px black;
 }
