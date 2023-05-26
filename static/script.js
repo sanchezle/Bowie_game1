@@ -354,8 +354,11 @@ document.addEventListener('DOMContentLoaded', function() {
           dogRect.bottom > palomaRect.top
         );
       }
+      //q: why the collition happend even if the paloma is not visible?
+      //a: because the paloma is still there, just not visible.
+      //q: how to make the paloma disappear?
+       
 
-      
 
       frameChange();
     
