@@ -16,7 +16,7 @@ body, html {
 
 #dog {
   position: absolute;
-  width: 50%; /* Update the width of the dog image */
+  width: 15%; /* Update the width of the dog image */
   height: auto;
   bottom: 20px;
   z-index:2;
