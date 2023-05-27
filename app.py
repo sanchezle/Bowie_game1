@@ -75,8 +75,11 @@ def login():
 
         # Remember which user has logged in
         session["user_id"] = rows[0]["id"]
-
-        # Redirect user to home page
+        
+              # Initialize the instruction counter
+        session["instruction_count"] = 3
+              # Redirect user to home page
+        
         return redirect("/")
 
     # User reached route via GET (as by clicking a link or via redirect)
@@ -136,6 +139,13 @@ def register():
 @app.route('/game', methods=['GET', 'POST'])
 @login_required
 def game():
+    if request.method == 'GET':
+        # Show instructions if the counter is greater than 0
+        show_instructions = session.get('instruction_count', 0) > 0
+        if show_instructions:
+            # Decrement the counter
+            session['instruction_count'] -= 1
+        return render_template('bowie_game.html', show_instructions=show_instructions)
     if request.method == 'POST':
         # Update score table logic here
         score = request.json.get('score')
@@ -254,6 +264,19 @@ def Bowiecoin():
         return apology("EN PROCESO")
 
 # ... other routes ...
+
+@app.route('/instructions', methods=['GET'])
+@login_required
+def instructions():
+    return render_template('instructions.html')
+
+@app.route('/update_instructions', methods=['POST'])
+@login_required
+def update_instructions():
+    if request.form.get('no_instructions') == 'on':
+        session['instruction_count'] = 0
+    return redirect(url_for('game'))
+
 
 #create a route for the game that whill update the database with the score
 
