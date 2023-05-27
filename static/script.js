@@ -36,7 +36,6 @@ document.addEventListener('DOMContentLoaded', function() {
   let rightTimerId;
   let movingTimerId;
   
- 
 
 
   //update score function
@@ -303,14 +302,15 @@ document.addEventListener('DOMContentLoaded', function() {
   setInterval(createBubble, 1000); // Create a bubble every second
   // new code 
 
-
-
- 
-
-
     function animateSprite() {
       let posX = containerWidth;
       //sets at what time flyanimation starts
+      setTimeout(() => {
+        flyAnimation();
+        console.log('fly animation');
+      }, 20000);
+      
+
       function frameChange() {
         let frame = 1;
 
@@ -334,6 +334,11 @@ document.addEventListener('DOMContentLoaded', function() {
             clearInterval(animationInterval);
             paloma.style.display = 'none';
           }
+          if (collisionWithDog(paloma)) {
+            paloma.style.display = 'none';
+            score += 40;
+            updateScore();
+          } 
         }, 30);
         //id dog collides with paloma score increases by 20 and paloma disappears
         if (collisionWithDog(paloma)) {
@@ -358,7 +363,7 @@ document.addEventListener('DOMContentLoaded', function() {
       //q: why the collition happend even if the paloma is not visible?
       //a: because the paloma is still there, just not visible.
       //q: how to make the paloma disappear?
-
+       
 
 
       frameChange();
@@ -458,12 +463,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
   checkPalomaAppearance();
   // q: why does the paloma not appear?
-  window.onload = function() {
-      setTimeout(flyAnimation, 5000);
-  };
-
-  window.onload = function() {
-    setTimeout(flyAnimation, 10000);
-  };
+ 
 
 });
