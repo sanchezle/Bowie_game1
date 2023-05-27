@@ -1,0 +1,5 @@
+.instructions{
+    font-family:arial, sans-serif;
+    color: #000; /* Black text */
+    text-shadow: 1px 1px #999, 2px 2px #999, 3px 3px #999;
+}
