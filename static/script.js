@@ -305,11 +305,17 @@ document.addEventListener('DOMContentLoaded', function() {
     function animateSprite() {
       let posX = containerWidth;
       //sets at what time flyanimation starts
-      setTimeout(() => {
-        flyAnimation();
-        console.log('fly animation');
-      }, 20000);
-      
+          //sets at what time flyanimation starts
+      flyAnimationWithSchedule(10000);
+      flyAnimationWithSchedule(20000);
+      flyAnimationWithSchedule(30000);
+
+      function flyAnimationWithSchedule(delay) {
+        setTimeout(() => {
+          flyAnimation();
+          console.log('fly animation');
+        }, delay);
+      }
 
       function frameChange() {
         let frame = 1;
@@ -325,20 +331,25 @@ document.addEventListener('DOMContentLoaded', function() {
       }
 
       function flyAnimation() {
+        posX = containerWidth;
+        paloma.style.display = 'block';
         const animationInterval = setInterval(() => {
           posX -= 8;
           paloma.style.left = `${posX}px`;
           paloma.style.bottom = 400 + 'px';
-
+  
           if (posX < -200) {
             clearInterval(animationInterval);
             paloma.style.display = 'none';
           }
+  
+          // Check for collision with the dog
           if (collisionWithDog(paloma)) {
             paloma.style.display = 'none';
             score += 40;
             updateScore();
-          } 
+          }
+
         }, 30);
         //id dog collides with paloma score increases by 20 and paloma disappears
         if (collisionWithDog(paloma)) {
