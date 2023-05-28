@@ -1,3 +1,4 @@
+
 body, html {
   margin: 0;
   padding: 0;
@@ -31,6 +32,7 @@ body, html {
 }
 
 .box {
+  height: 7%; 
   display: flex;
   font-size: 3rem; /* Update the font size */
 }
@@ -154,7 +156,7 @@ body, html {
   border: 1px solid white;
   padding: 10px;
   font-size: 16px;
-  height: 300px;
+  height: 20%;
   width: 16px;
   display: flex;
   align-items: flex-end;
