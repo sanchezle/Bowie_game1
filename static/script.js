@@ -57,11 +57,12 @@
 
       //stops the interval when the currentHeight is equal to the maxHeight and current height stops increasing
       if (currentHeight >= maxHeight) {
+        // play bark.mp3 just once when the height reach 80% of the maxHeight;
         bark.play();
         currentHeight = maxHeight;
         clearInterval(heightTimerId);  
       } 
-      // play bark.mp3 just once when the height reach 80% of the maxHeight;
+    
     
         
       // Increase the height by 20px
@@ -107,7 +108,7 @@
     function jump() {
       clearInterval(heightTimerId); 
       // Clear the interval when jump is called
-      // Your jump logic here;
+    
       //
       if (isJumping) return;
       let timerId = setInterval(function () {
@@ -194,9 +195,11 @@
       }
     }
     document.addEventListener('keydown', control);
+    
+    
+    
     //control for arrow buttons for mobile
 
-    
 
     document.querySelectorAll('.arrow-buttons').forEach(button => {
 
@@ -301,12 +304,12 @@
       );
     }
     setInterval(createBubble, 1000); // Create a bubble every second
-    // new code 
+
 
       function animateSprite() {
         let posX = containerWidth;
         //sets at what time flyanimation starts
-            //sets at what time flyanimation starts
+           
         flyAnimationWithSchedule(10000);
         flyAnimationWithSchedule(20000);
         flyAnimationWithSchedule(30000);
@@ -352,7 +355,7 @@
             }
 
           }, 30);
-          //id dog collides with paloma score increases by 20 and paloma disappears
+          //if dog collides with paloma score increases by 40 and paloma disappears
           if (collisionWithDog(paloma)) {
             paloma.style.display = 'none';
             score += 40;
@@ -372,9 +375,7 @@
             dogRect.bottom > palomaRect.top
           );
         }
-        //q: why the collition happend even if the paloma is not visible?
-        //a: because the paloma is still there, just not visible.
-        //q: how to make the paloma disappear?
+  
         
 
 

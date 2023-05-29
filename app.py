@@ -8,9 +8,8 @@ from helpers import apology, login_required
 from flask_socketio import SocketIO, emit
 from datetime import datetime
 
-# Configure application
-#q: are all off the routes underneaty properly indented?
-#a: yes, they are properly indented
+
+
 
 app = Flask(__name__)
 
@@ -131,11 +130,6 @@ def register():
 
 
 
-
-
-# q: when the '/updatescore' route is going to be calle?
-# a
-# just renders the templater and redirects you to index.html 5 seconds after the timer finishes
 @app.route('/game', methods=['GET', 'POST'])
 @login_required
 def game():
@@ -165,27 +159,7 @@ def game():
 
     return render_template('bowie_game.html')
 
-@app.route('/game2', methods=['GET', 'POST'])
-@login_required
-def game2():
-    if request.method == 'POST':
-        # Update score table logic here
-        score = request.json.get('score')
-        timestamp = datetime.now()
-        db.execute("INSERT INTO scores (user_id, score, timestamp) VALUES(?, ?, ?)", session["user_id"], score, timestamp)
-        # Redirect to index
-         # Create the response dictionary
-        response = {
-                    'message': 'Score updated successfully',
-            'redirect': url_for('index')
-        }
-        
-        # Redirect the user to the index page
-        return jsonify(response)
 
-    #call updateTimer function from script.js
-
-    return render_template('test.html')
 
 
 @socketio.on('timer_finished')
@@ -263,7 +237,6 @@ def Bowiecoin():
     else:
         return apology("EN PROCESO")
 
-# ... other routes ...
 
 @app.route('/instructions', methods=['GET'])
 @login_required
@@ -278,9 +251,8 @@ def update_instructions():
     return redirect(url_for('game'))
 
 
-#create a route for the game that whill update the database with the score
 
 if __name__ == '__main__':
     app.run(debug=True)
 
-#create a route for the game that whill update the database with the score
+
