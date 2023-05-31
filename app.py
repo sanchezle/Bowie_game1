@@ -201,7 +201,7 @@ def index():
 def records():
     if request.method == "GET":
         #join the scores table with the users table to get the a rank, username, score and timestamp of the 10 higher scores ever
-        higherscores = db.execute("SELECT users.username, max_scores.max_score, scores.timestamp, RANK() OVER (ORDER BY max_scores.max_score DESC) AS rank FROM (SELECT user_id, MAX(score) AS max_score FROM scores GROUP BY user_id) AS max_scores JOIN scores ON max_scores.user_id = scores.user_id AND max_scores.max_score = scores.score JOIN users ON scores.user_id = users.id ORDER BY max_scores.max_score DESC LIMIT 10")
+        higherscores = db.execute("SELECT username, score, timestamp, RANK() OVER (ORDER BY max_scores.max_score DESC) AS rank FROM (SELECT user_id, MAX(score) AS max_score FROM scores GROUP BY user_id) AS max_scores JOIN scores ON max_scores.user_id = scores.user_id AND max_scores.max_score = scores.score JOIN users ON scores.user_id = users.id ORDER BY max_scores.max_score DESC LIMIT 10")
             #""""
         user_records = db.execute("SELECT username, score, timestamp, RANK() OVER (ORDER BY score DESC) AS rank FROM scores JOIN users ON scores.user_id = users.id  WHERE scores.user_id = ? ORDER BY score DESC LIMIT 5", session["user_id"])
         username_dic = db.execute("SELECT username FROM users WHERE id = ?", session["user_id"])
