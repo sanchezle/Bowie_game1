@@ -4,3 +4,5 @@ bowiegame.db
 
 __pycache__/bowiegame.cpython-36.pyc
 __pycache__/
+
+/flask_session/
