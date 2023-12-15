@@ -100,17 +100,29 @@ def logout():
 def register():
     if request.method == "POST":
         username = request.form.get("username")
+        email = request.form.get("email")  # Retrieve email from form
         password = request.form.get("password")
         confirmation = request.form.get("confirmation")
 
+        # Validation for username
         if not username:
-            return apology("must provide an username", 403)
+            return apology("must provide a username", 403)
+
+        # Validation for email
+        if not email:
+            return apology("must provide an email", 403)
 
         # Check if username already exists
         count = db.execute("SELECT COUNT(*) as count FROM users WHERE username = ?", username)[0]["count"]
         if count > 0:
-            return apology("user already exists", 403)
+            return apology("username already exists", 403)
 
+        # Check if email already exists
+        email_count = db.execute("SELECT COUNT(*) as count FROM users WHERE email = ?", email)[0]["count"]
+        if email_count > 0:
+            return apology("email already in use", 403)
+
+        # Validation for password
         elif not password:
             return apology("you must provide a password", 403)
 
@@ -123,10 +135,12 @@ def register():
         else:
             # Hash the password before storing it
             password_hash = generate_password_hash(password)
-            db.execute("INSERT INTO users (username, hash) VALUES(?, ?)", username, password_hash)
+            # Insert the new user into the database including email
+            db.execute("INSERT INTO users (username, email, hash) VALUES(?, ?, ?)", username, email, password_hash)
             return render_template("success.html")
 
     return render_template("register.html")
+
 
 
 
