@@ -7,7 +7,12 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from helpers import apology, login_required
 from flask_socketio import SocketIO, emit
 from datetime import datetime
+import uuid
+from flask import url_for
+from helpers import send_confirmation_email
 
+from dotenv import load_dotenv
+load_dotenv()  # This loads the .env file variables
 
 
 
@@ -95,6 +100,7 @@ def logout():
     # Redirect user to login form
     return redirect("/")
 
+ # make sure this is imported from your helpers.py
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
@@ -104,44 +110,42 @@ def register():
         password = request.form.get("password")
         confirmation = request.form.get("confirmation")
 
-        # Validation for username
+        # Validation checks
         if not username:
             return apology("must provide a username", 403)
-
-        # Validation for email
         if not email:
             return apology("must provide an email", 403)
+        if not password:
+            return apology("you must provide a password", 403)
+        if not confirmation:
+            return apology("you must confirm your password", 403)
+        if password != confirmation:
+            return apology("passwords do not match", 403)
 
-        # Check if username already exists
+        # Check if username or email already exists
         count = db.execute("SELECT COUNT(*) as count FROM users WHERE username = ?", username)[0]["count"]
         if count > 0:
             return apology("username already exists", 403)
-
-        # Check if email already exists
         email_count = db.execute("SELECT COUNT(*) as count FROM users WHERE email = ?", email)[0]["count"]
         if email_count > 0:
             return apology("email already in use", 403)
 
-        # Validation for password
-        elif not password:
-            return apology("you must provide a password", 403)
+        # Hash the password before storing it
+        password_hash = generate_password_hash(password)
+        verification_token = str(uuid.uuid4())
 
-        elif not confirmation:
-            return apology("you must confirm your password", 403)
+        # Insert the new user into the database including email and verification token
+        db.execute("INSERT INTO users (username, email, hash, verification_token) VALUES(?, ?, ?, ?)",
+                   username, email, password_hash, verification_token)
 
-        elif password != confirmation:
-            return apology("passwords do not match", 403)
+        # Generate the verification link
+        verification_link = url_for('verify_email', token=verification_token, _external=True)
+        subject = "Confirm your email"
+        send_confirmation_email(email, subject, verification_link)  # Send confirmation email
 
-        else:
-            # Hash the password before storing it
-            password_hash = generate_password_hash(password)
-            # Insert the new user into the database including email
-            db.execute("INSERT INTO users (username, email, hash) VALUES(?, ?, ?)", username, email, password_hash)
-            return render_template("success.html")
+        return render_template("success.html")
 
     return render_template("register.html")
-
-
 
 
 @app.route('/game', methods=['GET', 'POST'])
@@ -224,7 +228,24 @@ def records():
         return render_template("records.html", higherscores=higherscores, username=username, user_records=user_records)
     else:
         return apology("no sé") 
-    
+
+
+@app.route('/verify_email/<token>')
+def verify_email(token):
+    # Query the database to find the user with this token
+    user = db.execute("SELECT * FROM users WHERE verification_token = ?", token)
+    if user:
+        # Update the isVerified column for this user
+        db.execute("UPDATE users SET email_confirmed = TRUE, verification_token = NULL WHERE verification_token = ?", token)
+        
+        # Render a template on successful verification
+        return render_template('email_verified.html')
+    else:
+        # Handle invalid or expired token
+        return "Invalid or expired verification link."
+
+
+
 @app.route("/store", methods=["GET"])
 def store():
     if request.method == "GET":
