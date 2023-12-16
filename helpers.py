@@ -1,6 +1,5 @@
 import os
-import requests
-import urllib.parse
+
 
 from flask import redirect, render_template, request, session
 from functools import wraps
@@ -43,7 +42,6 @@ def login_required(f):
 # helpers.py
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
-import os
 
 def send_confirmation_email(to_email, subject, verification_link):
     api_key = os.getenv('SENDGRID_API_KEY')
