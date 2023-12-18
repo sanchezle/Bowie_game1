@@ -42,26 +42,30 @@ def login_required(f):
 # helpers.py
 
 import requests
+
 def send_confirmation_email(to_email, subject, verification_link):
-    api_key = os.getenv('MAILERSEND_API_KEY')
-    from_email = os.getenv('FROM_EMAIL')  # Retrieve the sender's email from environment variable
+    api_key = os.getenv('MAILJET_API_KEY')
+    api_secret = os.getenv('MAILJET_API_SECRET')
     headers = {
-        "Authorization": f"Bearer {api_key}",
         "Content-Type": "application/json"
     }
     data = {
-        "from": {
-            "email": from_email,
-            "name": "Bowiegame"  # Optionally, update this as well
-        },
-        "to": [
+        "Messages": [
             {
-                "email": to_email
+                "From": {
+                    "Email": os.getenv('FROM_EMAIL'),
+                    "Name": "bowiegame"
+                },
+                "To": [
+                    {
+                        "Email": to_email
+                    }
+                ],
+                "Subject": subject,
+                "HTMLPart": f"<p>Please confirm your email by clicking on this <a href='{verification_link}'>link</a>.</p>"
             }
-        ],
-        "subject": subject,
-        "html": f"<p>Please confirm your email by clicking on this <a href='{verification_link}'>link</a>.</p>"
+        ]
     }
 
-    response = requests.post("https://api.mailersend.com/v1/email", json=data, headers=headers)
+    response = requests.post("https://api.mailjet.com/v3.1/send", auth=(api_key, api_secret), json=data, headers=headers)
     return response
