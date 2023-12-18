@@ -40,32 +40,28 @@ def login_required(f):
 # helpers.py
 
 # helpers.py
-
-import requests
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
 
 def send_confirmation_email(to_email, subject, verification_link):
-    api_key = os.getenv('MAILJET_API_KEY')
-    api_secret = os.getenv('MAILJET_API_SECRET')
-    headers = {
-        "Content-Type": "application/json"
-    }
-    data = {
-        "Messages": [
-            {
-                "From": {
-                    "Email": os.getenv('FROM_EMAIL'),
-                    "Name": "bowiegame"
-                },
-                "To": [
-                    {
-                        "Email": to_email
-                    }
-                ],
-                "Subject": subject,
-                "HTMLPart": f"<p>Please confirm your email by clicking on this <a href='{verification_link}'>link</a>.</p>"
-            }
-        ]
-    }
+    api_key = os.getenv('SENDGRID_API_KEY')
+    from_email = os.getenv('SENDGRID_FROM_EMAIL')  # Retrieve the sender's email from environment variable
 
-    response = requests.post("https://api.mailjet.com/v3.1/send", auth=(api_key, api_secret), json=data, headers=headers)
-    return response
+    sendgrid_client = SendGridAPIClient(api_key)
+    content = f"<p>Please confirm your email by clicking on this <a href='{verification_link}'>link</a>.</p>"
+
+    message = Mail(
+        from_email=from_email,
+        to_emails=to_email,
+        subject=subject,
+        html_content=content
+    )
+
+    # In your send_confirmation_email function
+    try:
+        response = sendgrid_client.send(message)
+        print(response.status_code)
+        print(response.body)
+        print(response.headers)
+    except Exception as e:
+        print(str(e))  # Corrected exception handling
