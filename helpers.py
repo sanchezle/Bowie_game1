@@ -40,10 +40,7 @@ def login_required(f):
 # helpers.py
 
 # helpers.py
-from sendgrid import SendGridAPIClient
-from sendgrid.helpers.mail import Mail
 
-import os
 import requests
 def send_confirmation_email(to_email, subject, verification_link):
     api_key = os.getenv('MAILERSEND_API_KEY')
