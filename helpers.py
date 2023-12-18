@@ -45,17 +45,17 @@ from sendgrid.helpers.mail import Mail
 
 import os
 import requests
-
 def send_confirmation_email(to_email, subject, verification_link):
     api_key = os.getenv('MAILERSEND_API_KEY')
+    from_email = os.getenv('FROM_EMAIL')  # Retrieve the sender's email from environment variable
     headers = {
         "Authorization": f"Bearer {api_key}",
         "Content-Type": "application/json"
     }
     data = {
         "from": {
-            "email": "your_verified_sender_email@example.com",
-            "name": "Your App Name"
+            "email": from_email,
+            "name": "Bowiegame"  # Optionally, update this as well
         },
         "to": [
             {
