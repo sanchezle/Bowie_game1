@@ -65,3 +65,20 @@ def send_confirmation_email(to_email, subject, verification_link):
         print(response.headers)
     except Exception as e:
         print(str(e))  # Corrected exception handling
+
+
+import bcrypt
+
+def hash_token(token):
+    return bcrypt.hashpw(token.encode(), bcrypt.gensalt())
+
+def verify_token(provided_token, stored_hash):
+    return bcrypt.checkpw(provided_token.encode(), stored_hash)
+
+def save_reset_token(email, hashed_token, expiry):
+    # Logic to update the user's record in the database
+    user = User.query.filter_by(email=email).first()
+    if user:
+        user.reset_token = hashed_token
+        user.reset_token_expiry = expiry
+        db.session.commit()
