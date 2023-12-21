@@ -1,23 +1,17 @@
 import os
 import secrets
+import uuid
+from datetime import datetime, timedelta
 
 from cs50 import SQL
-from flask import Flask, flash, redirect, render_template, request, session, Response, jsonify, url_for
+from flask import Flask, flash, redirect, render_template, request, session, jsonify, url_for, current_app
 from flask_session import Session
-from tempfile import mkdtemp
 from werkzeug.security import check_password_hash, generate_password_hash
-from helpers import apology, login_required, save_reset_token, hash_token, verify_token
+import jwt
+
+from helpers import apology, login_required, send_confirmation_email, save_reset_token, hash_token, verify_token
 from flask_socketio import SocketIO, emit
-from datetime import datetime
-import uuid
-from flask import url_for
-from helpers import send_confirmation_email
-import bcrypt
-from flask import request, render_template, flash, redirect, url_for
-import bcrypt
-import datetime
 from dotenv import load_dotenv
-from datetime import datetime, timedelta
 
 load_dotenv()  # This loads the .env file variables
 
@@ -97,6 +91,7 @@ def login():
     else:
         return render_template("login.html")
 
+
 @app.route("/logout")
 def logout():
     """Log user out"""
@@ -153,19 +148,27 @@ def register():
         return render_template("success.html")
 
     return render_template("register.html")
-import jwt
-from flask import current_app
+
 @app.route('/password_reset_request', methods=['GET', 'POST'])
 def password_reset_request():
     if request.method == 'POST':
         email = request.form.get('email')
+
+        # Check if user exists in the database
+        user = db.execute("SELECT * FROM users WHERE email = ?", email)
+        if not user:
+            flash('No user with the provided email. Please check the email provided.', 'error')
+            return render_template('password_reset_request.html')
+
+        # If user exists, proceed with password reset
         secret_key = os.environ.get('SECRET_KEY')
         encoded_jwt = jwt.encode({'email': email, 'exp': datetime.now() + timedelta(minutes=15)}, secret_key, algorithm='HS256')
         reset_link = url_for('reset_password', token=encoded_jwt, _external=True)
         send_confirmation_email(email, "Password Reset Request", reset_link)
         flash('Please check your email to reset your password', 'info')
-        return redirect(url_for('login'))
+        
     return render_template('password_reset_request.html')
+
 
 @app.route('/reset_password/<token>', methods=['GET', 'POST'])
 def reset_password(token):
