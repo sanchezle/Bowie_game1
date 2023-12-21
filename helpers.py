@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 
 import re
 load_dotenv()
-
+import re
 def apology(message, code=400):
     """Render message as an apology to user."""
     def escape(s):
@@ -37,7 +37,12 @@ def login_required(f):
     return decorated_function
 
 
-# helpers.py
+
+def is_valid_password(password):
+    # Define your regex pattern for the password
+    pattern = r'^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$'  # Example pattern
+    return re.match(pattern, password) is not None
+
 
 # helpers.py
 from sendgrid import SendGridAPIClient

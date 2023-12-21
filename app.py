@@ -9,7 +9,7 @@ from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
 import jwt
 
-from helpers import apology, login_required, send_confirmation_email, save_reset_token, hash_token, verify_token
+from helpers import apology, login_required, send_confirmation_email,is_valid_password ,save_reset_token, hash_token, verify_token
 from flask_socketio import SocketIO, emit
 from dotenv import load_dotenv
 
@@ -194,8 +194,48 @@ def reset_password(token):
             flash('Passwords do not match', 'error')
 
     return render_template('reset_password.html', token=token)
+@app.route('/recover_user', methods=['GET', 'POST'])
+def recover_user():
+    if request.method == 'POST':
+        username = request.form.get('username')
+        email = request.form.get('email')
+        new_password = request.form.get('password')
+        confirmation = request.form.get('confirmation')
+        token = request.form.get('token')
 
+        # Check if username exists
+        user = db.execute("SELECT * FROM users WHERE username = ?", username)
+        if not user:
+            return render_template('recover_user.html', message='Non-existing user')
 
+        # Password match check
+        if new_password != confirmation:
+            return render_template('recover_user.html', message='Passwords do not match')
+
+        # Validate password strength
+        if not is_valid_password(new_password):
+            return render_template('recover_user.html', message='Password does not meet criteria')
+
+        # Validate recovery token
+        if token != user[0]['recover_user_token']:
+            return render_template('recover_user.html', message='Wrong recovery user token')
+
+        # Hash the password before storing it
+        hashed_password = generate_password_hash(new_password)
+        db.execute("UPDATE users SET hash = ?, recover_user_token = NULL WHERE username = ?", hashed_password, username)
+
+        # Generate a new verification token
+        verification_token = str(uuid.uuid4())
+        db.execute("UPDATE users SET verification_token = ? WHERE username = ?", verification_token, username)
+        
+        # Generate the verification link
+        confirmation_link = url_for('verify_email', token=verification_token, _external=True)
+        subject = "User Recovery Confirmation"
+        send_confirmation_email(email, subject, confirmation_link)
+
+        return render_template('recover_user.html', message='Please check your email to confirm your email, otherwise you will not be able to login')
+
+    return render_template('recover_user.html')
 
 
 @app.route('/game', methods=['GET', 'POST'])
