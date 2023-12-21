@@ -8,3 +8,5 @@ __pycache__/
 .env
 
 flask_session/
+
+recover_token.py
