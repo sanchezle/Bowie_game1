@@ -60,34 +60,29 @@ def login():
     # Forget any user_id
     session.clear()
 
-    # User reached route via POST (as by submitting a form via POST)
     if request.method == "POST":
-
-        # Ensure username was submitted
+        # Form input validation
         if not request.form.get("username"):
             return apology("must provide username", 403)
-
-        # Ensure password was submitted
         elif not request.form.get("password"):
             return apology("must provide password", 403)
 
         # Query database for username
         rows = db.execute("SELECT * FROM users WHERE username = ?", request.form.get("username"))
 
-        # Ensure username exists and password is correct
+        # Validate username and password
         if len(rows) != 1 or not check_password_hash(rows[0]["hash"], request.form.get("password")):
             return apology("invalid username and/or password", 403)
 
-        # Remember which user has logged in
+        # Check if email is confirmed
+        if rows[0]["email_confirmed"] == 0:  # In SQLite, False is stored as 0
+            return apology("email not confirmed", 403)
+
+        # Set session and redirect user
         session["user_id"] = rows[0]["id"]
-        
-              # Initialize the instruction counter
         session["instruction_count"] = 3
-              # Redirect user to home page
-        
         return redirect("/")
 
-    # User reached route via GET (as by clicking a link or via redirect)
     else:
         return render_template("login.html")
 
@@ -123,7 +118,8 @@ def register():
             return apology("you must confirm your password", 403)
         if password != confirmation:
             return apology("passwords do not match", 403)
-
+        if not is_valid_password(password):
+            return apology('Password does not meet criteria', 403)
         # Check if username or email already exists
         count = db.execute("SELECT COUNT(*) as count FROM users WHERE username = ?", username)[0]["count"]
         if count > 0:
@@ -149,27 +145,6 @@ def register():
 
     return render_template("register.html")
 
-@app.route('/password_reset_request', methods=['GET', 'POST'])
-def password_reset_request():
-    if request.method == 'POST':
-        email = request.form.get('email')
-
-        # Check if user exists in the database
-        user = db.execute("SELECT * FROM users WHERE email = ?", email)
-        if not user:
-            flash('No user with the provided email. Please check the email provided.', 'error')
-            return render_template('password_reset_request.html')
-
-        # If user exists, proceed with password reset
-        secret_key = os.environ.get('SECRET_KEY')
-        encoded_jwt = jwt.encode({'email': email, 'exp': datetime.now() + timedelta(minutes=15)}, secret_key, algorithm='HS256')
-        reset_link = url_for('reset_password', token=encoded_jwt, _external=True)
-        send_confirmation_email(email, "Password Reset Request", reset_link)
-        flash('Please check your email to reset your password', 'info')
-        
-    return render_template('password_reset_request.html')
-
-
 @app.route('/reset_password/<token>', methods=['GET', 'POST'])
 def reset_password(token):
     try:
@@ -183,17 +158,22 @@ def reset_password(token):
     if request.method == 'POST':
         new_password = request.form.get('new_password')
         confirm_password = request.form.get('confirm_password')
-        if new_password == confirm_password:
-            hashed_password = generate_password_hash(new_password)
-            db.execute("UPDATE users SET hash = ? WHERE email = ?", hashed_password, email)
 
-
-            flash('Your password has been reset', 'success')
-            return redirect(url_for('login'))
-        else:
+        if new_password != confirm_password:
             flash('Passwords do not match', 'error')
+            return render_template('reset_password.html', token=token)
+
+        if not is_valid_password(new_password):
+            flash('Password does not meet criteria', 'error')
+            return render_template('reset_password.html', token=token)
+
+        hashed_password = generate_password_hash(new_password)
+        db.execute("UPDATE users SET hash = ? WHERE email = ?", hashed_password, email)
+        flash('Your password has been reset', 'success')
+        return redirect(url_for('login'))
 
     return render_template('reset_password.html', token=token)
+
 @app.route('/recover_user', methods=['GET', 'POST'])
 def recover_user():
     if request.method == 'POST':
