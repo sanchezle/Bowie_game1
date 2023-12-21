@@ -149,6 +149,27 @@ def register():
 
     return render_template("register.html")
 
+@app.route('/password_reset_request', methods=['GET', 'POST'])
+def password_reset_request():
+    if request.method == 'POST':
+        email = request.form.get('email')
+
+        # Check if user exists in the database
+        user = db.execute("SELECT * FROM users WHERE email = ?", email)
+        if not user:
+            flash('No user with the provided email. Please check the email provided.', 'error')
+            return render_template('password_reset_request.html')
+
+        # If user exists, proceed with password reset
+        secret_key = os.environ.get('SECRET_KEY')
+        encoded_jwt = jwt.encode({'email': email, 'exp': datetime.now() + timedelta(minutes=15)}, secret_key, algorithm='HS256')
+        reset_link = url_for('reset_password', token=encoded_jwt, _external=True)
+        send_confirmation_email(email, "Password Reset Request", reset_link)
+        flash('Please check your email to reset your password', 'info')
+        
+    return render_template('password_reset_request.html')
+
+
 @app.route('/reset_password/<token>', methods=['GET', 'POST'])
 def reset_password(token):
     try:
