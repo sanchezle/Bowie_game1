@@ -207,7 +207,6 @@ def reset_password(token):
 
     return render_template('reset_password.html', token=token)
 
-
 @app.route('/recover_user', methods=['GET', 'POST'])
 def recover_user():
     if request.method == 'POST':
@@ -237,13 +236,16 @@ def recover_user():
         verification_token = str(uuid.uuid4())
         db.execute("UPDATE users SET verification_token = ? WHERE username = ?", verification_token, username)
         
-        confirmation_link = url_for('verify_email', token=verification_token, _external=True)
+        # Prepare and send the user recovery email
+        recovery_link = url_for('verify_email', token=verification_token, _external=True)
         subject = "User Recovery Confirmation"
-        send_confirmation_email(email, subject, confirmation_link)
+        html_content = get_user_recovery_email_content(recovery_link)
+        send_confirmation_email(email, subject, html_content)
 
         return render_template('recover_user.html', message='Please check your email to confirm your email, otherwise you will not be able to login')
 
     return render_template('recover_user.html')
+
 
 @app.route('/game', methods=['GET', 'POST'])
 @login_required
