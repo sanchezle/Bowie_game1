@@ -151,8 +151,6 @@ def register():
 
         return render_template("success.html")
 
-    return render_template("register.html")
-
 @app.route('/password_reset_request', methods=['GET', 'POST'])
 def password_reset_request():
     if request.method == 'POST':
@@ -168,10 +166,16 @@ def password_reset_request():
         secret_key = os.environ.get('SECRET_KEY')
         encoded_jwt = jwt.encode({'email': email, 'exp': datetime.now() + timedelta(minutes=15)}, secret_key, algorithm='HS256')
         reset_link = url_for('reset_password', token=encoded_jwt, _external=True)
-        send_confirmation_email(email, "Password Reset Request", reset_link)
+        
+        # Prepare and send the password reset email
+        subject = "Password Reset Request for BowieGame"
+        html_content = get_password_reset_email_content(reset_link)
+        send_confirmation_email(email, subject, html_content)
+
         flash('Please check your email to reset your password', 'info')
         
     return render_template('password_reset_request.html')
+
 
 
 @app.route('/reset_password/<token>', methods=['GET', 'POST'])
