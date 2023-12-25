@@ -48,28 +48,27 @@ def is_valid_password(password):
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 
-def send_confirmation_email(to_email, subject, verification_link):
+def send_confirmation_email(to_email, subject, html_content):
     api_key = os.getenv('SENDGRID_API_KEY')
     from_email = os.getenv('SENDGRID_FROM_EMAIL')  # Retrieve the sender's email from environment variable
 
     sendgrid_client = SendGridAPIClient(api_key)
-    content = f"<p>Please confirm your email by clicking on this <a href='{verification_link}'>link</a>.</p>"
 
     message = Mail(
         from_email=from_email,
         to_emails=to_email,
         subject=subject,
-        html_content=content
+        html_content=html_content
     )
 
-    # In your send_confirmation_email function
+    # Sending the email
     try:
         response = sendgrid_client.send(message)
         print(response.status_code)
         print(response.body)
         print(response.headers)
     except Exception as e:
-        print(str(e))  # Corrected exception handling
+        print(str(e))  # Improved exception handling
 
 
 import bcrypt
