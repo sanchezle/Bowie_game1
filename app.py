@@ -15,6 +15,7 @@ import jwt
 from helpers import apology, login_required, send_confirmation_email,is_valid_password ,save_reset_token, hash_token, verify_token
 from flask_socketio import SocketIO, emit
 from dotenv import load_dotenv
+from email_contents import get_registration_email_content, get_password_reset_email_content, get_user_recovery_email_content
 
 
 load_dotenv()  # This loads the .env file variables
@@ -139,11 +140,14 @@ def register():
         # Insert the new user into the database including email and verification token
         db.execute("INSERT INTO users (username, email, hash, verification_token) VALUES(?, ?, ?, ?)",
                    username, email, password_hash, verification_token)
-
+        
         # Generate the verification link
         verification_link = url_for('verify_email', token=verification_token, _external=True)
-        subject = "Confirm your email"
-        send_confirmation_email(email, subject, verification_link)  # Send confirmation email
+
+        # Prepare and send the confirmation email
+        subject = "Confirm Your BowieGame Registration"
+        html_content = get_registration_email_content(verification_link)
+        send_confirmation_email(email, subject, html_content)
 
         return render_template("success.html")
 
