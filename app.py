@@ -67,13 +67,15 @@ def login():
 
     if request.method == "POST":
         # Form input validation
-        if not request.form.get("username"):
+        if not request.form.get("identifier"):
             return apology("must provide username", 403)
         elif not request.form.get("password"):
             return apology("must provide password", 403)
 
         # Query database for username
-        rows = db.execute("SELECT * FROM users WHERE username = ?", request.form.get("username"))
+        identifier = request.form.get("identifier")  # Either username or email
+        rows = db.execute("SELECT * FROM users WHERE username = :identifier OR email = :identifier", identifier=identifier)
+
 
         # Validate username and password
         if len(rows) != 1 or not check_password_hash(rows[0]["hash"], request.form.get("password")):
@@ -203,7 +205,7 @@ def reset_password(token):
         hashed_password = generate_password_hash(new_password)
         db.execute("UPDATE users SET hash = ? WHERE email = ?", hashed_password, email)
         flash('Your password has been reset', 'success')
-        return redirect(url_for('login'))
+        return redirect(url_for('837834login'))
 
     return render_template('reset_password.html', token=token)
 
