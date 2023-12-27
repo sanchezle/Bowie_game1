@@ -152,7 +152,9 @@ def register():
         send_confirmation_email(email, subject, html_content)
 
         return render_template("success.html")
-
+    
+    return render_template("register.html")
+    
 @app.route('/password_reset_request', methods=['GET', 'POST'])
 def password_reset_request():
     if request.method == 'POST':
@@ -211,7 +213,10 @@ def reset_password(token):
 
 @app.route('/recover_user', methods=['GET', 'POST'])
 def recover_user():
+    users_to_recover= db.execute("SELECT username FROM users WHERE email_confirmed = FALSE;")
+        
     if request.method == 'POST':
+        
         username = request.form.get('username')
         email = request.form.get('email')
         new_password = request.form.get('password')
@@ -244,7 +249,7 @@ def recover_user():
         html_content = get_user_recovery_email_content(recovery_link)
         send_confirmation_email(email, subject, html_content)
 
-        return render_template('recover_user.html', message='Please check your email to confirm your email, otherwise you will not be able to login')
+        return render_template( 'recover_user.html', message='Please check your email to confirm your email, otherwise you will not be able to login',users_to_recover=users_to_recover)
 
     return render_template('recover_user.html')
 
