@@ -2,10 +2,13 @@
 
 {% block main %}
     <form action="/recover_user" method="post">
-        <div class="mb-3">
-            <input type="text" id="username" name="username" placeholder="Username" required>
-        </div>
-        <div class="mb-3">
+        <div class>
+            <select name="username" required>
+                {% for user in users_to_recover %}
+                <option value="{{ user }}">{{ user }}</option>
+                {% endfor %}
+            </select>
+        </div class="mb-3">
             <input type="email" id="email" name="email" placeholder="Email" required>
         </div>
         <div class="mb-3">
