@@ -213,7 +213,7 @@ def reset_password(token):
 
 @app.route('/recover_user', methods=['GET', 'POST'])
 def recover_user():
-    users_to_recover= db.execute("SELECT username FROM users WHERE email_confirmed = FALSE;")
+    users_to_recover = db.execute("SELECT username FROM users WHERE email_confirmed = FALSE;")
         
     if request.method == 'POST':
         
@@ -249,9 +249,9 @@ def recover_user():
         html_content = get_user_recovery_email_content(recovery_link)
         send_confirmation_email(email, subject, html_content)
 
-        return render_template( 'recover_user.html', message='Please check your email to confirm your email, otherwise you will not be able to login',users_to_recover=users_to_recover)
+        return render_template( 'recover_user.html', message='Please check your email to confirm your email, otherwise you will not be able to login')
 
-    return render_template('recover_user.html')
+    return render_template('recover_user.html',  users_to_recover=users_to_recover)
 
 
 @app.route('/game', methods=['GET', 'POST'])
