@@ -249,7 +249,7 @@ def recover_user():
         html_content = get_user_recovery_email_content(recovery_link)
         send_confirmation_email(email, subject, html_content)
 
-        return render_template( 'recover_user.html', message='Please check your email to confirm your email, otherwise you will not be able to login')
+        return render_template( 'recover_user.html', users_to_recover=users_to_recover, message='Please check your email to confirm your email, otherwise you will not be able to login')
 
     return render_template('recover_user.html',  users_to_recover=users_to_recover)
 
