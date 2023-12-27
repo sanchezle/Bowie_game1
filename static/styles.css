@@ -167,6 +167,12 @@ nav .navbar-brand span {
     width: 80%;
 }
 
+#selection {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 80%;
+}
 .r_form {
     display: inline-block;
     border-radius: 10px;
