@@ -37,10 +37,9 @@ def login_required(f):
     return decorated_function
 
 
-
 def is_valid_password(password):
-    # Define your regex pattern for the password
-    pattern = r'^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$'  # Example pattern
+    # Define the regex pattern for the password
+    pattern = r'^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d!@#$%^&*()_+-=]{8,}$'  # Updated pattern
     return re.match(pattern, password) is not None
 
 

@@ -126,7 +126,7 @@ def register():
         if password != confirmation:
             return apology("passwords do not match", 403)
         if not is_valid_password(password):
-            return apology('Password does not meet criteria', 403)
+            return apology('Password must be at least 8 characters long, including at least one letter and one number. Special characters are allowed but not required.', 403)
         # Check if username or email already exists
         count = db.execute("SELECT COUNT(*) as count FROM users WHERE username = ?", username)[0]["count"]
         if count > 0:
@@ -231,7 +231,7 @@ def recover_user():
             return render_template('recover_user.html', message='Passwords do not match')
 
         if not is_valid_password(new_password):
-            return render_template('recover_user.html', message='Password does not meet criteria')
+            return render_template('recover_user.html', message='Password must be at least 8 characters long, including at least one letter and one number. Special characters are allowed but not required.')
 
         hashed_token = user[0]['recover_user_token']
         if not check_password_hash(hashed_token, token):
