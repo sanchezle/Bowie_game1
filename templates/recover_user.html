@@ -4,8 +4,9 @@
     <form action="/recover_user" method="post">
         <div class>
             <select name="username" id="selection" required>
+                <option value="" disabled selected>Select User</option>
                 {% for user in users_to_recover %}
-                <option value="{{ user.username }}">{{ user.username }}</option>
+                    <option value="{{ user.username }}">{{ user.username }}</option>
                 {% endfor %}
             </select>
         </div>

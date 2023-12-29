@@ -320,6 +320,7 @@ def index():
         
         return apology("no sé") 
 
+
 @app.route("/records", methods=["GET"])
 @login_required
 def records():
