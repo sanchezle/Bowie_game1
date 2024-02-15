@@ -1,42 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bowie_Game</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="static/styles_game.css"> <!-- Point to the single CSS file -->
-    <script src="static/script.js"></script>
-</head>
-<body>
-    <div class="container" id="container">
-        <div class="box">
-            <button id="mute-button">M U T E</button>
-            <div id="time-display"></div>
-            <div id="score">Score 0</div>
-        </div>
-        <!--<div class="bubble bubble-one" id="bubble1"-->
-
-        </div>
-        <div>
-            <img src="static/pictures/ground.png" alt="floor" id="floor">
-            <img src="static/pictures/dog.png" alt="Dog" id="dog">
-            <div id="paloma"></div>
-        </div>
-        <div class="arrow-buttons">
-            <button class="arrow-button" id="left">◄</button>
-            <div>
-                <button class="arrow-button" id="up">Jump</button>
-                <button class="arrow-button stop-button" id="down">Stop</button>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Bowie_Game</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="styles_game.css">
+        <script src="static/script.js"></script>
+    </head>
+    <body>
+        <div class="container" id="container">
+            <div class="box">
+                <button id="mute-button">M U T E</button>
+                <div id="time-display"></div>
+                <div id="score">Score 0</div>
             </div>
-            <button class="arrow-button" id="right">►</button>
+            <!--<div class="bubble bubble-one" id="bubble1"-->
+
+            </div>
+            <div>
+                <img src="static/pictures/ground.png" alt="floor" id="floor">
+                <img src="static/pictures/dog.png" alt="Dog" id="dog">
+                <div id="paloma"></div>
+            </div>
+            <div class="arrow-buttons">
+                    <button class="arrow-button" id="left">◄</button>
+                <div>
+                    <button class="arrow-button" id="up">Jump</button>
+                    <button class="arrow-button stop-button" id="down">Stop</button>
+                </div>
+                    <button class="arrow-button" id="right">►</button>
+            </div>          
+                <div class="height-display" id="heightDisplay"></div>
+            <div>
+                <audio src="static/Popping-Sound-Effect.mp3" id="pop"></audio>
+                <audio src="static/bark.mp3" id="bark"></audio>
+                <audio src="static/Angry-Birds-Theme-Song.mp3" id="bg-music" loop autoplay></audio>
+            </div>
         </div>
-        <div class="height-display" id="heightDisplay"></div>
-        <div>
-            <audio src="static/Popping-Sound-Effect.mp3" id="pop"></audio>
-            <audio src="static/bark.mp3" id="bark"></audio>
-            <audio src="static/Angry-Birds-Theme-Song.mp3" id="bg-music" loop autoplay></audio>
-        </div>
-    </div>
-</body>
+        <script>
+            window.onload = function() {
+                var link = document.querySelector('link[rel="stylesheet"]');
+                if (window.matchMedia("(max-width: 768px)").matches) {
+                    console.log("Mobile device detected. Switching to mobile stylesheet.");
+                    link.href = "static/styles_game.css";
+                } else {
+                    console.log("Desktop device detected. Switching to desktop stylesheet.");
+                    link.href = "static/styles2.css";
+                }
+            };
+
+        </script>
+    </body>
 </html>
