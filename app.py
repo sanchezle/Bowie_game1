@@ -6,7 +6,7 @@ import bcrypt
 import hashlib
 
 from cs50 import SQL
-from flask import Flask, flash, redirect, render_template, request, session, jsonify, url_for, current_app
+from flask import Flask, flash, redirect, render_template, request, session, jsonify, url_for, current_app, send_from_directory
 from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
 import jwt
