@@ -17,7 +17,7 @@ body, html {
 
 #dog {
   position: absolute;
-  width: 50%; /* Update the width of the dog image */
+  width: 20; /* Update the width of the dog image */
   height: auto;
   bottom: 20px;
   z-index:2;
@@ -244,4 +244,10 @@ body, html {
   background-size: cover;
   animation: fly-animation 3s steps(9) infinite;
   z-index: 3;
+}
+/* Media query for mobile devices */
+@media (max-width: 768px) {
+  #dog {
+      width: 25vw; /* Larger percentage of the viewport width on smaller screens */
+  }
 }
