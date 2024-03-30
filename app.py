@@ -62,6 +62,9 @@ def get_users():
 @app.route('/sitemap.xml', methods=['GET'])
 def sitemap():
     return app.send_static_file('sitemap.xml')
+@app.route('/robots.txt')
+def robots_txt():
+    return send_from_directory(app.static_folder, request.path[1:])
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
