@@ -58,8 +58,11 @@ def get_users():
     # Do something with the fetched data, like return it as JSON or render a template
 
 
-
 # Add the additional routes and functions that you have provided
+@app.route('/sitemap.xml', methods=['GET'])
+def sitemap():
+    return app.send_static_file('sitemap.xml')
+
 @app.route("/login", methods=["GET", "POST"])
 def login():
     # Forget any user_id
