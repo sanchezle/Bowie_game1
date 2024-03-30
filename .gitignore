@@ -10,3 +10,7 @@ __pycache__/
 flask_session/
 
 recover_token.py
+/templates/combine.py
+/templates/combine3.txt
+/templates/list2.txt
+
