@@ -248,6 +248,6 @@ body, html {
 /* Media query for mobile devices */
 @media (max-width: 768px) {
   #dog {
-      width: 25vw; /* Larger percentage of the viewport width on smaller screens */
+      width: 50vw; /* Larger percentage of the viewport width on smaller screens */
   }
 }
