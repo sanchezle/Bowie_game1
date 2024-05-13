@@ -4,51 +4,48 @@
 {% endblock %}
 
 {% block main %}
-    <div class="container">
-        <h1>Records</h1>
-        <table class="table table-striped">
-            <thead>
+<div class="container">
+    <h1>Records</h1>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Rank</th>
+                <th scope="col">Username</th>
+                <th scope="col">Score</th>
+                <th scope="col">Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in higherscores %}
                 <tr>
-                    <th scope="col">Rank</th>
-                    <th scope="col">Username</th>
-                    <th scope="col">Score</th>
-                    <th scope="col">Date</th>
+                    <th scope="row">{{ loop.index }}</th>
+                    <td>{{ record.username }}</td>
+                    <td>{{ record.score }}</td>
+                    <td>{{ record.timestamp }}</td>
                 </tr>
-            </thead>
-            <tbody>
-                {% for record in higherscores %}
-                    <tr>
-                        <th scope="row">{{ loop.index }}</th>
-                        <td>{{ record.username }}</td>
-                        <td>{{ record.score }}</td>
-                        <td>{{ record.timestamp }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
-    <!-- wiht title "USERNAME HIGHER SCORE table containgin user personal higher score-->
-    <!-- <div class="container"> -->
-        <h1 method="get">{{ username }} HIGHER SCORE</h1>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<div class="container">
+    <h1>{{ username }}'s Higher Score</h1>
     <table>
-        <thead method="get">
+        <thead>
+            <tr>
+                <th scope="col">Username</th>
+                <th scope="col">Score</th>
+                <th scope="col">Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in user_records %}
                 <tr>
-                    <th scope="col">Username</th>
-                    <th scope="col">Score</th>
-                    <th scope="col">Date</th>
+                    <td>{{ record.username }}</td>
+                    <td>{{ record.score }}</td>
+                    <td>{{ record.timestamp }}</td>
                 </tr>
-            </thead>
-            <tbody>
-                {% for record in user_records  %}
-                    <tr>
-                        <td>{{ record.username }}</td>
-                        <td>{{ record.score }}</td>
-                        <td>{{ record.timestamp }}</td>
-                   </tr>
-                {% endfor %}
-            </tbody>
-    </table>    
-
-    
-
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 {% endblock %}

@@ -1,20 +1,19 @@
 {% extends "layout.html" %}
 {% block title %}
-    home
+    Home
 {% endblock %}
 
 {% block main %}
-        <a id="play-button2" href="/game">PLAY</a>
-        
+<h1>Welcome to Bowie Game</h1>
+<a id="play-button2" href="/game">PLAY</a>
 
 <div class="index items">
-    <h1 id id="title">BOWIE GAME</h1>
-    <h1 name="username" method="get">{{ username }}</h1>
-    <h1 name="last_score" method="get"> YOUR LAST SCORE WAS {{ lastuserscore }}</h1>
+    <h2 id="title">BOWIE GAME</h2>
+    <h2 name="username" method="get">{{ username }}</h2>
+    <h2 name="last_score" method="get">YOUR LAST SCORE WAS {{ lastuserscore }}</h2>
 </div>
 
 <div>
-
     <table method="get">
         <thead>
             <tr>
@@ -31,12 +30,9 @@
                     <td>{{ record.timestamp }}</td>
                 </tr>
             {% endfor %}
-
+        </tbody>
     </table>
-        <a id="records-link" href="/records"> World Records</a>
-        <a id="instructions-link" href="/instructions">Instructions</a>
+    <a id="records-link" href="/records"> World Records</a>
+    <a id="instructions-link" href="/instructions">Instructions</a>
 </div>
-
-
-
 {% endblock %}
