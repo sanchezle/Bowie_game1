@@ -1,21 +1,20 @@
 {% extends "layout.html" %}
-{% block title %}
-    Log In
-{% endblock %}
 
 {% block main %}
-<h1>Log In</h1>
-<form action="/login" method="post">
-    <div class="mb-3">
-        <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="identifier" name="identifier" placeholder="Username or Email" type="text">
-    </div>
-    <div class="mb-3">
-        <input class="form-control mx-auto w-auto" id="password" name="password" placeholder="Password" type="password">
-        <input type="checkbox" onclick="togglePasswordVisibility()"> Show Password
-    </div>
-    <button class="btn btn-primary" type="submit">Log In</button>
-</form>
-<a id="cambiar" href="/register"><h4>Register</h4></a>
-<a id="password_reset_request" href="/password_reset_request"><h4>Forgot Password?</h4></a>
-<a id="recover_user" href="/recover_user"><h4>Recover User</h4></a>
+    <form action="/login" method="post">
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="identifier" name="identifier" placeholder="Username or Email" type="text">
+
+        </div>
+        <div class="mb-3">
+            <input class="form-control mx-auto w-auto" id="password" name="password" placeholder="Password" type="password">
+            <input type="checkbox" onclick="togglePasswordVisibility()"> Show Password
+        </div>
+        <button class="btn btn-primary" type="submit">Log In</button>
+    </form>
+    <a id="cambiar" href="/register"><h4>Register</h4></a>
+    <a id="password_reset_request" href="/password_reset_request"><h4>Forgot Password?</h4></a>
+    <a id="recover_user" href="/recover_user"><h4>Recover User</h4></a>
+
 {% endblock %}
+<!--q: why the form do not appeare in the page -->
