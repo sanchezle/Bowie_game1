@@ -1,36 +1,31 @@
 <!DOCTYPE html>
-    <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <title>Instructions</title>
-            <link rel="stylesheet" href="instructions.css">
-            <script>
-            </script>
-        </head>
-            <body>
-                <div class="instructions">
-                    <h1>Instructions</h1>
-                    <ul>
-                        <li>the game last 60 seconds</li>
-                        <li> Hit the pigeon and score 40 points</li>
-                        <li> Pop as many bubbles as you can, each bubble poped adds 2 points to the score</li>
-                        <li> Bowie barks when he reaches a max height in the height bar (is Bowie actually barking )</li>
-                        <li> On mobile press the Jump button for jumping, and hold the button to reach max height, on desktop press the space bar</li>
-                        <li> move with the arrows buttons, on desktop use the keyboard arrows instead</li>
-                        <li></li>
-                    </ul>
-                </div>
-                <div>
-                    <form action="/update_instructions" method="POST">
-                        <input type="checkbox" id="no_instructions" name="no_instructions">
-                        <label for="no_instructions">Don't show instructions again</label>
-                        <input type="submit" value="Continue">
-                    </form>
-                    
-                </div>
-                <div>
-                    <!-- 10 countdow to bowie_game_html-->
-                    <h1></h1>
-                </div>
-            </body>
-    </html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Instructions for playing Bowie Game.">
+    <meta name="keywords" content="Bowie, game, Teckel, instructions, how to play">
+    <title>Instructions</title>
+    <link rel="stylesheet" href="static/instructions.css">
+</head>
+<body>
+    <div class="instructions">
+        <h1>Instructions</h1>
+        <ul>
+            <li>The game lasts 60 seconds</li>
+            <li>Hit the pigeon and score 40 points</li>
+            <li>Pop as many bubbles as you can; each bubble popped adds 2 points to the score</li>
+            <li>Bowie barks when he reaches max height (Is Bowie actually barking)</li>
+            <li>On mobile, press the Jump button to jump and hold it to reach max height; on desktop, press the space bar</li>
+            <li>Move with the arrow buttons; on desktop, use the keyboard arrows instead</li>
+        </ul>
+    </div>
+    <div>
+        <form action="/update_instructions" method="POST">
+            <input type="checkbox" id="no_instructions" name="no_instructions">
+            <label for="no_instructions">Don't show instructions again</label>
+            <input type="submit" value="Continue">
+        </form>
+    </div>
+</body>
+</html>

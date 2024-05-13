@@ -4,27 +4,23 @@
 {% endblock %}
 
 {% block main %}
-    <form action="/register" method="post">
-        <div class="r_form">
-            <input type="text" id="username" name="username" placeholder="Username" required>
-        </div>
-        <div class="r_form">
-            <input type="email" id="email" name="email" placeholder="Email" required>
-        </div>
-        <div class="r_form">
-            <input type="password" id="password" name="password" placeholder="Password" required>
-        </div>
-        <div class="r_form">
-            <input type="password" name="confirmation" placeholder="Confirm Password" required>
-        </div>
-
-        <button type="submit" id="registerb">Register</button>
-    </form>
-    <div action="/register" method="get">
-        <p>
-            {{problem}}
-        </p>
+<h1>Register</h1>
+<form action="/register" method="post">
+    <div class="r_form">
+        <input type="text" id="username" name="username" placeholder="Username" required>
     </div>
-
+    <div class="r_form">
+        <input type="email" id="email" name="email" placeholder="Email" required>
+    </div>
+    <div class="r_form">
+        <input type="password" id="password" name="password" placeholder="Password" required>
+    </div>
+    <div class="r_form">
+        <input type="password" name="confirmation" placeholder="Confirm Password" required>
+    </div>
+    <button type="submit" id="registerb">Register</button>
+</form>
+<div action="/register" method="get">
+    <p>{{problem}}</p>
+</div>
 {% endblock %}
-

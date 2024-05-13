@@ -1,35 +1,92 @@
-/* Size for brand */
-nav .navbar-brand {
-    background-color: black;
-    white-space: pre;
-    font-size: 1.5r;
-    color: white;
-    font-weight: bold;
-}
-
-nav.navbar {
-    height: 10%;
-    background-color:black; /* Change the 0.5 value to adjust the opacity */
-}
-
-.r_form {
-    margin-bottom: 1rem !important;
-    margin-top: 1rem !important;
-
-}
-
+/* General Styles */
 * {
-    
     box-sizing: border-box;
-    border:0;
-    padding:0;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
 }
 
 div {
     display: block;
 }
 
-/* Styles for the table */
+/* Navbar Styles */
+nav .navbar-brand {
+    background-color: black;
+    white-space: pre;
+    font-size: 1.5rem;
+    color: white;
+    font-weight: bold;
+}
+
+nav.navbar {
+    height: 10%;
+    background-color: black; 
+}
+
+.navbar-toggler {
+    color: white;
+    border: 1px solid white;
+    background-color: black;
+    font-size: 14px;
+    font-weight: bold;
+    width: 60px;
+}
+
+.navbar-toggler-icon {
+    color: white;
+}
+
+/* 3D effect and color for span within the navbar-brand */
+nav .navbar-brand span {
+    text-shadow: 1px 1px 2px #333, -1px -1px 2px #333, 1px -1px 2px #333, -1px 1px 2px #333, 0px 0px 3px #fff;
+    color: #e1e5ec;
+}
+
+.navbar-nav {
+    color: white;
+    font-weight: bold;
+}
+
+/* Form Styles */
+.r_form {
+    margin-bottom: 1rem !important;
+    margin-top: 1rem !important;
+    display: inline-block;
+    border-radius: 10px;
+    border: 2px solid #ccc;
+    padding: 20px;
+    width: 70%;
+}
+
+input[type="text"], input[type="password"], input[type="email"] {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 80%;
+}
+
+#selection {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 80%;
+}
+
+#registerb {
+    margin-top: 20px;
+    display: inline-block;
+    width: 20%;
+    margin-left: 10%;
+    margin-right: 10%;
+    border: solid 1px black;
+}
+
+/* Table Styles */
 table {
     border-collapse: collapse;
     margin: 0 auto;
@@ -56,53 +113,27 @@ tr:hover {
     background-color: #ddd;
 }
 
-
+/* Image Styles */
 .dog-image {
     position: static;
     bottom: 100px;
     left: 0;
-    z-index: -1; /* To ensure the image is displayed below other elements */
-    width: auto; /* Add this line */
-    height: auto; /* Add this line */
-    max-width: 50%; /* Add this line */
-    max-height: 100%; /* Add this line */
+    z-index: -1; 
+    width: auto; 
+    height: auto; 
+    max-width: 50%; 
+    max-height: 100%; 
 }
 
 .ball-image {
     position: relative;
     bottom: -37px;
     right: -110px;
-    width: 11%; /* Reduce the size to a quarter */
-    z-index: -1; /* To ensure the image is displayed below other elements */
+    width: 11%;
+    z-index: -1; 
 }
 
-
-/* 3D effect and color for span within the navbar-brand */
-nav .navbar-brand span {
-    text-shadow: 1px 1px 2px #333, -1px -1px 2px #333, 1px -1px 2px #333, -1px 1px 2px #333, 0px 0px 3px #fff;
-    color: #e1e5ec;
-}
-
-.pictures-container {
-    position: relative;
-
-}
-
-.navar-nav {
-    color: white;
-    font-weight: bold;
-}
-
-.navbar-toggler {
-    color: white;
-    border : 1px solid white;
-    background-color: black;
-    font-size: 14px;
-    font-weight: bold;
-    width: 60px;
-}
-
-
+/* Button Styles */
 #play-button2 {
     text-align: center;
     justify-content: center;
@@ -110,85 +141,78 @@ nav .navbar-brand span {
     padding: 0;
     margin: 0;
     min-width: 150px;
-    box-sizing: border-box;
     background-color: #000;
     color: white;
-    /* Make the button wider a 0.20 wider */
     width: 20%;
-    /* distance within the nav.bar 40 px*/
     margin-bottom: 30px;
-     /* Make the button wider and taller */
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 24px; /* Increase the font size for larger button */
+    font-size: 24px;
     transition-duration: 0.4s;
     cursor: pointer;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3); /* 3D effect */
-    margin-top: 10px; /* Separate button from the index items */
-    /* add a frame like border of white 1px and 1px of distance between actual border */
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+    margin-top: 10px;
     border: 1px solid white;
     border-radius: 5px;
     font-weight: bold;
-    /* aligns text to center*/
-    text-align: center;
+}
 
-  }
-  
-  #play-button2:hover {
+#play-button2:hover {
     background-color: #444;
     color: white;
-  }
-  
-  #play-button2:active {
+}
+
+#play-button2:active {
     background-color: #000;
     box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
     transform: translateY(4px);
-  }
-  
-  .index.items h1 {
-    color: #000; /* Black text */
-    text-shadow: 1px 1px #999, 2px 2px #999, 3px 3px #999; /* 3D effect with lighter shadows */
-  }
-
-  #records-link{
-    margin-top: 20px;
-    display: inline-block; 
-  }
-  #cambiar{
-    margin-top: 20px;
-    display: inline-block; 
-    
-  }
-  input[type="text"], input[type="password"], input[type="email"] {
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin-bottom: 10px;
-    width: 80%;
 }
 
-#selection {
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin-bottom: 10px;
-    width: 80%;
+/* Index Page Styles */
+.index.items h1 {
+    color: #000; 
+    text-shadow: 1px 1px #999, 2px 2px #999, 3px 3px #999;
 }
-.r_form {
+
+#index.items h2 {
+    color: #000;
+    text-shadow: 1px 1px #999;
+}
+
+#records-link {
+    margin-top: 20px;
     display: inline-block;
-    border-radius: 10px;
-    border: 2px solid #ccc;
-    padding: 20px;
-    margin-bottom: 20px;
-    width: 70%;
-    display:block;
-    right:0;
-    align-self: center;
 }
-#registerb{
+
+#cambiar {
     margin-top: 20px;
-    display: inline-block; 
-    width: 20%;
-    margin-left: 10%;
-    margin-right: 10%;
-    border: solid 1px black;
+    display: inline-block;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .navbar-toggler {
+        font-size: 12px;
+        width: 50px;
+    }
+
+    #play-button2 {
+        width: 50%;
+        font-size: 18px;
+    }
+
+    .r_form {
+        width: 90%;
+    }
+
+    input[type="text"], input[type="password"], input[type="email"], #selection {
+        width: 90%;
+    }
+
+    #registerb {
+        width: 50%;
+        margin-left: 0;
+        margin-right: 0;
+    }
 }
