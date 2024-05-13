@@ -4,30 +4,30 @@
 {% endblock %}
 
 {% block main %}
-<h1>Recover User</h1>
-<form action="/recover_user" method="post">
-    <div>
-        <select name="username" id="selection" required>
-            <option value="" disabled selected>Select User</option>
-            {% for user in users_to_recover %}
-                <option value="{{ user.username }}">{{ user.username }}</option>
-            {% endfor %}
-        </select>
-    </div>
-    <div class="mb-3">
-        <input type="email" id="email" name="email" placeholder="Email" required>
-    </div>
-    <div class="mb-3">
-        <input type="password" id="password" name="password" placeholder="New Password" required>
-    </div>
-    <div class="mb-3">
-        <input type="password" name="confirmation" placeholder="Confirm New Password" required>
-    </div>
-    <div class="mb-3">
-        <input type="text" id="token" name="token" placeholder="Recovery Token" required>
-    </div>
-    <button type="submit" class="btn btn-primary">Recover User</button>
-</form>
-{% if message %}
-   
+    <form action="/recover_user" method="post">
+        <div class>
+            <select name="username" id="selection" required>
+                <option value="" disabled selected>Select User</option>
+                {% for user in users_to_recover %}
+                    <option value="{{ user.username }}">{{ user.username }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        </div class="mb-3">
+            <input type="email" id="email" name="email" placeholder="Email" required>
+        </div>
+        <div class="mb-3">
+            <input type="password" id="password" name="password" placeholder="New Password" required>
+        </div>
+        <div class="mb-3">
+            <input type="password" name="confirmation" placeholder="Confirm New Password" required>
+        </div>
+        <div class="mb-3">
+            <input type="text" id="token" name="token" placeholder="Recovery Token" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Recover User</button>
+    </form>
+    {% if message %}
+        <div class="alert alert-info">{{ message }}</div>
+    {% endif %}
 {% endblock %}
