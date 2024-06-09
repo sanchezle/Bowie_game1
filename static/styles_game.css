@@ -1,4 +1,3 @@
-
 body, html {
   margin: 0;
   padding: 0;
@@ -17,65 +16,49 @@ body, html {
 
 #dog {
   position: absolute;
-  width: 50%; /* Update the width of the dog image */
+  max-width: 30%;
   height: auto;
   bottom: 20px;
-  z-index:2;
+  z-index: 2;
 }
 
 #floor {
-  position:absolute;
+  position: absolute;
   width: 100%;
   height: 8%;
   bottom: 0px;
-
 }
 
 .box {
-  height: 7%; 
+  height: 7%;
   display: flex;
-  font-size: 3rem; /* Update the font size */
+  font-size: 3rem;
 }
+
 #mute-button {
   background-color: rgba(204, 204, 204, 0.533);
   border: 1px solid #ccc;
   color: white;
   cursor: pointer;
-  border-radius: 50%; /* Make the border-radius 50% to create a round shape */
-  width: 60px; /* Set a fixed width */
-  height: 60px; /* Set a fixed height */
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
   font-family: sans-serif;
   font-weight: bolder;
   top: 60px;
   font-size: 10px;
-
 }
 
 #mute-button:hover {
   background-color: #aaa;
-
 }
 
-#time-display {
-
+#time-display, #score {
   flex: 1 1 auto;
-  transform: scale(0.75); /* Scale the element to 75% of its original size */
+  transform: scale(0.75);
   font-family: sans-serif;
-}
-
-
-#score {
-
-  flex: 1 1 auto;
-  transform: scale(0.75); /* Scale the element to 75% of its original size */
-  font-family: sans-serif;
-}
-
-#score, #time-display {
-  flex: 1 1 auto;
   color: white;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-  font-family: sans-serif;
   font-weight: bold;
 }
 
@@ -88,7 +71,7 @@ body, html {
   align-items: flex-end;
 }
 
-.arrow-button {
+.arrow-button, #down {
   width: 50px;
   height: 50px;
   background-color: rgba(204, 204, 204, 0.7);
@@ -102,31 +85,19 @@ body, html {
 }
 
 #down {
-  width: 50px;
-  height: 50px;
-  background-color: rgba(204, 204, 204, 0.7);
   border-radius: 20%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   font-size: 14px;
-  cursor: pointer;
-  margin: 5px;
 }
 
 #down::before {
   content: "■";
   font-size: 12px;
   color: #ccc;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .container {
-  position: relative; /* Add relative positioning */
+  position: relative;
 }
-
 
 .stop-button {
   background-color: #ccc;
@@ -166,7 +137,7 @@ body, html {
   transition: height 0.3s;
   z-index: 1;
   overflow: hidden;
-  opacity: 0.5; /* Add the opacity property */
+  opacity: 0.5;
 }
 
 .bubble {
@@ -179,36 +150,36 @@ body, html {
   background-position: center;
   border-radius: 50%;
   box-shadow: inset 0 0 0 2px #fff, inset -5px 5px 7.5px #020131,
-  inset 2.5px 2.5px 5px #960101, inset -2.5px 2.5px 2px #fff,
-  inset 7.5px 12.5px 4px #3c026c;
+    inset 2.5px 2.5px 5px #960101, inset -2.5px 2.5px 2px #fff,
+    inset 7.5px 12.5px 4px #3c026c;
   z-index: 2;
 }
 
-.bubble-two{
+.bubble-two {
   box-shadow: inset 0 0 0 2px #fff, inset -5px 5px 7.5px #06f3df,
-  inset 2.5px 2.5px 5px #f8e63e, inset -2.5px 2.5px 2px #fff,
-  inset 7.5px 12.5px 4px #ed24aa;
- 
+    inset 2.5px 2.5px 5px #f8e63e, inset -2.5px 2.5px 2px #fff,
+    inset 7.5px 12.5px 4px #ed24aa;
 }
-.bubble-three{
-  box-shadow: inset 0 0 0 2px #010631, inset -5px 5px 7.5px #1512f3,
-  inset 2.5px 2.5px 5px #80036b, inset -2.5px 2.5px 2px #fff,
-  inset 7.5px 12.5px 4px #33114e;
- 
-}
-.bubble-four{
-  box-shadow: inset 0 0 0 2px #8b0101, inset -5px 5px 7.5px #f6f6fc,
-  inset 2.5px 2.5px 5px #81f733, inset -2.5px 2.5px 2px #fff,
-  inset 7.5px 12.5px 4px #0b0822;
- 
-}
-.bubble-five{
-  box-shadow: inset 0 0 0 2px #fff, inset -5px 5px 7.5px #100dee,
-  inset 2.5px 2.5px 5px #f7a120, inset -2.5px 2.5px 2px #fff,
-  inset 7.5px 12.5px 4px #ed24c1;
 
+.bubble-three {
+  box-shadow: inset 0 0 0 2px #010631, inset -5px 5px 7.5px #1512f3,
+    inset 2.5px 2.5px 5px #80036b, inset -2.5px 2.5px 2px #fff,
+    inset 7.5px 12.5px 4px #33114e;
 }
-@-webkit-keyframes fly-animation { /* Safari and Chrome */
+
+.bubble-four {
+  box-shadow: inset 0 0 0 2px #8b0101, inset -5px 5px 7.5px #f6f6fc,
+    inset 2.5px 2.5px 5px #81f733, inset -2.5px 2.5px 2px #fff,
+    inset 7.5px 12.5px 4px #0b0822;
+}
+
+.bubble-five {
+  box-shadow: inset 0 0 0 2px #fff, inset -5px 5px 7.5px #100dee,
+    inset 2.5px 2.5px 5px #f7a120, inset -2.5px 2.5px 2px #fff,
+    inset 7.5px 12.5px 4px #ed24c1;
+}
+
+@-webkit-keyframes fly-animation {
   0% {
     right: 0;
   }
@@ -227,16 +198,8 @@ body, html {
 }
 
 #paloma {
-  /* Safari and Chrome */
   -webkit-animation: fly-animation 3s linear infinite;
-
-  /* Standard syntax */
   animation: fly-animation 3s linear infinite;
-}
-
-
-
-#paloma {
   position: absolute;
   width: 70px;
   height: 70px;
@@ -245,4 +208,16 @@ body, html {
   animation: fly-animation 3s steps(9) infinite;
   z-index: 3;
 }
-/* Media query for mobile devices */
+
+@media (max-width: 988px) {
+  #dog {
+    max-width: 60%;
+    bottom: 10px;
+  }
+  .box {
+    font-size: 2rem;
+  }
+  .bubble {
+ 
+  }
+}
