@@ -20,7 +20,7 @@
     const verticalRangeMin = containerHeight - 600; // Adjust the range as needed
     const verticalRangeMax = containerHeight - 400; // Adjust the range as needed
 
-    let time = 60; // Set the initial time in seconds
+    let time = 61; // Set the initial time in seconds
     let score = 0; // Initialize the score variable
     let bottom = 0;
     // jump variables
@@ -255,13 +255,13 @@
       let randomBubble = Math.floor(Math.random() * bubbles.length);
       div.className = 'bubble bubble-' + bubbles[randomBubble];
     
-      // Determine the height of the bubble within a range above 60% of the bottom
-      let randomHeight = Math.floor((Math.random() * (container.offsetHeight * 0.3)) + (container.offsetHeight * 0.35));
+      // Determine the height of the bubble within a higher range
+      let randomHeight = Math.floor((Math.random() * (container.offsetHeight * 0.2)) + (container.offsetHeight * 0.5));
       div.style.left = container.offsetWidth + 'px';
       div.style.bottom = randomHeight + 'px';
     
       // Randomize the width of the bubble between 40px and 120px
-      let randomWidth = Math.floor(Math.random() * 81) + 10;
+      let randomWidth = Math.floor(Math.random() * 81) + 20; // Updated range for width
       div.style.width = randomWidth + 'px';
       div.style.height = randomWidth + 'px';
     
@@ -269,10 +269,11 @@
       animateBubble(div);
     }
     
-    
     function animateBubble(bubble) {
       let left = parseInt(bubble.style.left);
+      let bottom = parseInt(bubble.style.bottom);
       let speed = Math.random() * 2 + 1; // Variable speed for each bubble
+      let riseSpeed = Math.random() * 0.3 + 0.1; // Slight upward movement speed
       let points = 1; // Points to increase for each bubble pop by the dog
     
       let animationId = setInterval(function() {
@@ -287,10 +288,16 @@
           updateScore();
         } else {
           left -= speed;
+          bottom += riseSpeed; // Slightly move the bubble up
           bubble.style.left = left + 'px';
+          bubble.style.bottom = bottom + 'px';
         }
       }, 10);
     }
+    
+
+    
+
     
     function collisionWithDog(bubble) {
       let dogRect = dog.getBoundingClientRect();
@@ -340,7 +347,7 @@
           const animationInterval = setInterval(() => {
             posX -= 8;
             paloma.style.left = `${posX}px`;
-            paloma.style.bottom = 400 + 'px';
+            paloma.style.bottom = 700 + 'px';
     
             if (posX < -200) {
               clearInterval(animationInterval);

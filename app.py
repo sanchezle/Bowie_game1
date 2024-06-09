@@ -16,7 +16,7 @@ from helpers import apology, login_required, send_confirmation_email,is_valid_pa
 from flask_socketio import SocketIO, emit
 from dotenv import load_dotenv
 from email_contents import get_registration_email_content, get_password_reset_email_content, get_user_recovery_email_content
-
+from livereload import Server
 
 load_dotenv()  # This loads the .env file variables
 
@@ -389,6 +389,8 @@ def update_instructions():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
-
-
+    app.debug = True  # Enable debug mode
+    server = Server(app.wsgi_app)
+    server.watch('static/*.*')  # Watch the static files
+    server.watch('templates/*.*')  # Watch the template files
+    server.serve(port=5000, host='localhost')
