@@ -53,37 +53,43 @@ nav .navbar-brand span {
 }
 
 /* Form Styles */
-.r_form {
-    margin-bottom: 1rem !important;
-    margin-top: 1rem !important;
-    display: inline-block;
-    border-radius: 10px;
+.custom-form {
+    display: flex;
+    flex-direction: column;
     border: 2px solid #ccc;
-    padding: 20px;
-    width: 70%;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    width: 30%;
+    margin: 0 auto;
 }
 
-input[type="text"], input[type="password"], input[type="email"] {
-    border: 1px solid #ccc;
+.custom-form .mb-3 {
+
+    width: 100%;
+    margin-bottom: 1rem;
+}
+.este {
+    border: 1px solid grey;
+    border-radius: 2rem;
+    /* Your CSS rules here */
+    width: 100%;
+}
+
+input[type="text"], input[type="password"], input[type="email"], select {
+    display: inline-flex;
+
     padding: 10px;
     margin-bottom: 10px;
-    width: 80%;
+    width: 100%;
+    display: block;
+    border-radius: 4px;
 }
 
-#selection {
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin-bottom: 10px;
-    width: 80%;
-}
-
-#registerb {
+button.btn {
     margin-top: 20px;
     display: inline-block;
-    width: 20%;
-    margin-left: 10%;
-    margin-right: 10%;
-    border: solid 1px black;
+    width: 100%;
 }
 
 /* Table Styles */
@@ -190,6 +196,50 @@ tr:hover {
     display: inline-block;
 }
 
+.about {
+    text-align: center;
+}
+
+.about h2 {
+    margin-bottom: 20px;
+    font-size: 2rem;
+    color: #333;
+}
+
+.about p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: #555;
+    text-align: justify; /* Justify the text */
+}
+
+.about-images {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.about-image {
+    max-width: 100%;
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.about-video {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.about-container {
+    max-width: 800px; /* Same max-width as video */
+    margin: 0 auto; /* Center align */
+    padding: 0 20px; /* Add some padding */
+}
+
+
+
 /* Responsive Styles */
 @media (max-width: 768px) {
     .navbar-toggler {
@@ -202,17 +252,18 @@ tr:hover {
         font-size: 18px;
     }
 
-    .r_form {
+    .custom-form {
+        width: 80%;
+    }
+
+    input[type="text"], input[type="password"], input[type="email"], select {
         width: 90%;
     }
 
-    input[type="text"], input[type="password"], input[type="email"], #selection {
+    button.btn {
         width: 90%;
-    }
-
-    #registerb {
-        width: 50%;
-        margin-left: 0;
-        margin-right: 0;
     }
 }
+
+
+
