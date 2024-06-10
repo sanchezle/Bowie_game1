@@ -1,26 +1,23 @@
 {% extends "layout.html" %}
-{% block title %}
-    Register
-{% endblock %}
-
+{% block title %}Register{% endblock %}
 {% block main %}
 <h1>Register</h1>
-<form action="/register" method="post">
-    <div class="r_form">
-        <input type="text" id="username" name="username" placeholder="Username" required>
+<form action="/register" method="post" class="custom-form">
+    <div class="mb-3">
+        <input type="text" id="username" name="username" class="este" placeholder="Username" required>
     </div>
-    <div class="r_form">
-        <input type="email" id="email" name="email" placeholder="Email" required>
+    <div class="mb-3">
+        <input type="email" id="email" name="email" class="este" placeholder="Email" required>
     </div>
-    <div class="r_form">
-        <input type="password" id="password" name="password" placeholder="Password" required>
+    <div class="mb-3">
+        <input type="password" id="password" name="password" class="este" placeholder="Password" required>
+        <input type="checkbox" onclick="togglePasswordVisibility('password')"> Show Password
     </div>
-    <div class="r_form">
-        <input type="password" name="confirmation" placeholder="Confirm Password" required>
+    <div class="mb-3">
+        <input type="password" id="confirmation" name="confirmation" class="este" placeholder="Confirm Password" required>
+        <input type="checkbox" onclick="togglePasswordVisibility('confirmation')"> Show Password
     </div>
-    <button type="submit" id="registerb">Register</button>
+    <button type="submit" class="btn btn-primary">Register</button>
 </form>
-<div action="/register" method="get">
-    <p>{{problem}}</p>
-</div>
 {% endblock %}
+

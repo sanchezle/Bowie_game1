@@ -1,22 +1,16 @@
 {% extends "layout.html" %}
-{% block title %}
-    Log In
-{% endblock %}
-
+{% block title %}Log In{% endblock %}
 {% block main %}
 <h1>Log In</h1>
-<form action="/login" method="post">
+<form action="/login" method="post" class="custom-form">
     <div class="mb-3">
-        <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="identifier" name="identifier" placeholder="Username or Email" type="text">
+        <input autocomplete="off" autofocus class="este" id="identifier" name="identifier" placeholder="Username or Email" type="text">
     </div>
     <div class="mb-3">
-        <input class="form-control mx-auto w-auto" id="password" name="password" placeholder="Password" type="password">
-        <input type="checkbox" onclick="togglePasswordVisibility()"> Show Password
+        <input class="este" id="password" name="password" placeholder="Password" type="password">
+        <input type="checkbox" onclick="togglePasswordVisibility('password')"> Show Password
     </div>
     <button class="btn btn-primary" type="submit">Log In</button>
-    <div >
-    
-    </div>
 </form>
 <a id="cambiar" href="/register"><h4>Register</h4></a>
 <a id="password_reset_request" href="/password_reset_request"><h4>Forgot Password?</h4></a>

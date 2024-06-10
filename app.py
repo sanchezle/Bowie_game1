@@ -111,6 +111,11 @@ def logout():
     return redirect("/")
 
  # make sure this is imported from your helpers.py
+ #about route
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
