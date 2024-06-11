@@ -111,11 +111,12 @@ def logout():
     return redirect("/")
 
  # make sure this is imported from your helpers.py
+ 
  #about route
+
 @app.route('/about')
 def about():
     return render_template('about.html')
-
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
@@ -263,6 +264,8 @@ def recover_user():
         return render_template( 'recover_user.html', users_to_recover=users_to_recover, message='Please check your email to confirm your email, otherwise you will not be able to login')
 
     return render_template('recover_user.html',  users_to_recover=users_to_recover)
+
+
 
 
 @app.route('/game', methods=['GET', 'POST'])

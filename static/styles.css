@@ -263,7 +263,9 @@ tr:hover {
     button.btn {
         width: 90%;
     }
+
+    .about-container {
+        width: 100%; /* Use 100% width on small screens */
+        padding: 0 10px; /* Reduce padding for small screens */
+    }
 }
-
-
-
