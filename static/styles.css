@@ -233,7 +233,10 @@ tr:hover {
 }
 
 .about-container {
-    max-width: 800px; /* Same max-width as video */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 1000px; /* Same max-width as video */
     margin: 0 auto; /* Center align */
     padding: 0 20px; /* Add some padding */
 }
@@ -264,8 +267,12 @@ tr:hover {
         width: 90%;
     }
 
-    .about-container {
+}
+@media (max-width: 768px) {
+    body .about-container {
         width: 100%; /* Use 100% width on small screens */
-        padding: 0 10px; /* Reduce padding for small screens */
+        padding: 0 0px !important; /* Adjust padding */
+        margin-right: 0 !important; /* Override Bootstrap's auto margin */
+        margin-left: 0 !important; /* Override Bootstrap's auto margin */
     }
 }
