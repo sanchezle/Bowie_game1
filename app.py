@@ -270,7 +270,7 @@ def on_timer_finished(data):
 @app.route('/records', methods=['GET'])
 @login_required
 def records():
-    higherscores = db.execute("SELECT username, score, timestamp FROM (SELECT user_id, MAX(score) AS max_score FROM scores GROUP BY user_id) max_scores JOIN scores ON max_scores.user_id = scores.user_id AND max_scores.max_score = scores.score JOIN users ON scores.user_id = users.id ORDER BY max_scores.max_score DESC LIMIT 10")
+    higherscores = db.execute("SELECT username, score, timestamp FROM (SELECT user_id, MAX(score) AS max_score FROM scores GROUP BY user_id) max_scores JOIN scores ON max_scores.user_id = scores.user_id AND max_scores.max_score = scores.score JOIN users ON scores.user_id = users.id ORDER BY max_scores.max_score DESC LIMIT 20")
     user_records = db.execute("SELECT score, timestamp FROM scores WHERE user_id = ? ORDER BY score DESC LIMIT 5", session["user_id"])
     username = db.execute("SELECT username FROM users WHERE id = ?", session["user_id"])[0]["username"]
     return render_template("records.html", higherscores=higherscores, username=username, user_records=user_records)
