@@ -241,6 +241,40 @@ tr:hover {
     padding: 0 20px; /* Add some padding */
 }
 
+/* OAuth Button Styles */
+
+.oauth-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 30%;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    text-decoration: none;
+    color: white;
+    transition: background-color 0.3s;
+    margin-left: 35%;
+}
+
+.oauth-btn.google {
+    background-color: #db4437;
+}
+
+.oauth-btn.google:hover {
+    background-color: #c23321;
+}
+
+.oauth-btn.facebook {
+    background-color: #3b5998;
+}
+
+.oauth-btn.facebook:hover {
+    background-color: #2d4373;
+}
 
 
 /* Responsive Styles */
