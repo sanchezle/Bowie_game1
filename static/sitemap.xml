@@ -6,7 +6,6 @@
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 <!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
 
-
 <url>
   <loc>https://www.bowiegame.es/login</loc>
   <lastmod>2024-04-01T13:36:45+00:00</lastmod>
@@ -27,6 +26,10 @@
   <lastmod>2024-04-01T13:36:45+00:00</lastmod>
   <priority>0.80</priority>
 </url>
-
+<url>
+  <loc>https://www.bowiegame.es/about</loc>
+  <lastmod>2024-04-01T13:36:45+00:00</lastmod>
+  <priority>0.60</priority>
+</url>
 
 </urlset>
