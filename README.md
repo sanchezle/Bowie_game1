@@ -113,7 +113,63 @@ on tuesday 5 I inquiry again this time on workplace chat mr Bejot how should I p
 and I kept insisting for the rest of the days that the oath certificated was valid proof and every time mr bejot  denied with absolut certainty that the document was not vaild. to which I told him to iqury further with other tms or stm to which he replid he would do, bot apparenlty he didn't do it or if it did it wasn't in a propper way
 finally on november 7 mr bejot told me I he was going to 'help' me , and he would give me some time of meeting for calling the office and get againg the justificante, while I also suggested I was going to send hime the otah certificated and other doccument attached  to the email, which I did on november 7 at 9:19.
 when I returned I told mr bejot I had sent him the email with the oath certificated and I kindly requested to check which obviously he did't do, since it was only days later when I informed him I had gotten a warning, tha he realized that the document we the  according to the same stm it had sanctioned me with the warning. on november 7 mr bejot suggested me to provide the documents trough the platfomr workday after I finished my shift. on november 8 I got the warning for 'not providing the document that proof my attendance to the appointemt' issue by the then senior team managger, Julio Miguel Arenas Arteta the very same stm that along with mr bejot had dismmised the oath of nationality certficaded as valid document and the very sam stm that after issuing the warnig finally checked the document and realized it was a valid document.
-after that day we had a meeting where both person very unenthicaly and unproffesionally deny their responsability in the whole situation. I haven't rised the issue till now since I have had my personal issue to address including the death of my father and other procesess related to my newlly aquiry nationality and I decided to prioritize such issue but I want to clarify what happened
+after that day we had a meeting where both person very unenthicaly and unproffesionally deny their responsability in the whole situation. I haven't rised the issue till now since I have had my personal issue to address including the death of my father and other procesess related to my newlly aquiry nationality and I decided to prioritize such issue but I want to English Version
+
+Subject: Clarification Regarding the Recent Warning
+
+Dear Works Council,
+
+I am writing to clarify the circumstances that led to a recent warning. Initially, I informed my team manager, Tristan Bejot, that I needed to attend an official nationality oath appointment. After this first mention, I will refer to him as Mr. Bejot. I also need to clarify the involvement of the senior team manager, Julio Miguel Arenas Arteta, after this first mention, I will refer to him as Mr. Arenas Arteta.
+
+Key Timeline (Short Version):
+	•	October 30: I verbally informed Mr. Bejot that I needed to leave at 9:00 am for a 10:40 am nationality oath appointment. After returning, I recorded my presence and informed Mr. Bejot that I had the official oath certificate, but no “justificante.”
+	•	November 1-4: Due to a national holiday, weekend days, and a DANA severe weather alert, I could not immediately return to the registry to obtain the justificante. Although I had emailed them, I received no response by November 4.
+	•	November 5: I reminded Mr. Bejot via the workplace chat that I still had the valid oath certificate.
+	•	November 7: Following Mr. Bejot’s suggestion, I sent him the oath certificate via email at 9:19 am and also submitted it through Workday that same day.
+
+Detailed Account:
+On October 30, I told Mr. Bejot about my public duty (the nationality oath) and that I would leave at 9:00 am since my appointment was at 10:40 am. I noted my departure in the Verint system. Upon my return, I also logged my presence and informed Mr. Bejot that I did not receive a justificante at the registry but I had an official oath certificate. Mr. Bejot dismissed the oath certificate’s validity and insisted I must obtain a justificante, telling me to contact the registry office again. I did so, and after my shift, I went in person to the registry (Registro Civil Número 2 de Barcelona) to request it. They instructed me to send an email instead, which I did, but I never received a reply.
+
+Between November 1 and 4, I faced a holiday, the weekend, and severe weather (DANA) on November 4, which prevented a prompt follow-up. Despite these delays and my repeated requests, I received no guidance. On November 5, I again informed Mr. Bejot via workplace chat that I had the oath certificate, a legal document confirming my attendance at the exact appointment time. Mr. Bejot continued to deny its validity without seeking further clarification from others.
+
+On November 7, Mr. Bejot said he would “help” by allowing me time to call again, and I sent him the oath certificate via email at 9:19 am and also submitted it through Workday. However, he did not check it. On November 8, I received a warning from Mr. Arenas Arteta—the same STM who had previously dismissed my oath certificate. Only after issuing the warning did Mr. Arenas Arteta acknowledge its validity. In a subsequent meeting, both managers denied any responsibility for what had happened.
+
+What concerns me most is not just the series of mistakes, but the lack of professionalism and ethics shown throughout this process. This behavior could affect any of our colleagues, and I believe it needs to be addressed.
+
+Sincerely,
+[Your Name]
+
+Versión en Español
+
+Asunto: Aclaración sobre el “warning” reciente
+
+Estimado Comité de Empresa,
+
+Les escribo para aclarar las circunstancias que llevaron a un reciente “warning.” En un principio, informé a mi team manager, Tristan Bejot, de que necesitaba asistir a una cita oficial para el juramento de nacionalidad. Después de esta primera mención, me referiré a él como Mr. Bejot. También deseo aclarar la implicación del senior team manager, Julio Miguel Arenas Arteta; tras esta primera mención, me referiré a él como Mr. Arenas Arteta.
+
+Línea de Tiempo (Versión Corta):
+	•	30 de octubre: Informé verbalmente a Mr. Bejot que debía ausentarme a las 9:00 am para asistir a una cita de juramento de nacionalidad a las 10:40 am. Al regresar, registré mi presencia y le informé que tenía el certificado de juramento, pero no un justificante.
+	•	1 al 4 de noviembre: Debido a un día festivo, el fin de semana y una alerta DANA, no pude volver inmediatamente al registro para obtener el justificante. Aunque envié un correo electrónico, no recibí respuesta antes del 4 de noviembre.
+	•	5 de noviembre: Le recordé a Mr. Bejot mediante el chat de la empresa que todavía contaba con el certificado de juramento válido.
+	•	7 de noviembre: Según la sugerencia de Mr. Bejot, le envié el certificado de juramento por correo electrónico a las 9:19 am y también lo envié a través de la plataforma Workday ese mismo día.
+
+Relato Detallado:
+El 30 de octubre informé a Mr. Bejot que tenía un deber público (el juramento de nacionalidad) y que saldría a las 9:00 am, dado que mi cita era a las 10:40 am. Dejé constancia en el sistema Verint de mi salida. Al regresar, registré también mi presencia y le informé a Mr. Bejot que no obtuve un justificante en el registro, pero que tenía un certificado oficial de juramento. Mr. Bejot descartó la validez del certificado y me insistió en que debía conseguir un justificante, indicándome que contactara nuevamente al registro. Así lo hice y, tras mi turno, acudí en persona al Registro Civil Número 2 de Barcelona para solicitarlo. Allí me indicaron que debía enviar un correo electrónico, el cual envié, pero nunca obtuve respuesta.
+
+Entre el 1 y el 4 de noviembre, me vi limitado por un día festivo, el fin de semana y la alerta DANA del 4 de noviembre, lo que me impidió hacer un seguimiento inmediato. A pesar de mis intentos y solicitudes, no recibí orientación. El 5 de noviembre, recordé a Mr. Bejot a través del chat de la empresa que poseía el certificado de juramento, un documento legal que demuestra que estuve en la cita a la hora indicada. Mr. Bejot continuó negando su validez sin verificar con otros team manager o con Mr. Arenas Arteta.
+
+El 7 de noviembre, Mr. Bejot dijo que me “ayudaría” dándome tiempo para llamar de nuevo, y ese mismo día (a las 9:19 am) le envié el certificado de juramento por correo electrónico y también lo subí a Workday. Sin embargo, no lo revisó. El 8 de noviembre recibí un “warning” de Mr. Arenas Arteta, el mismo STM que anteriormente había desestimado la validez del certificado. Sólo después de emitir el “warning” reconoció su validez. En una reunión posterior, tanto Mr. Bejot como Mr. Arenas Arteta negaron cualquier responsabilidad.
+
+Lo que más me preocupa no son sólo los errores cometidos, sino la falta de profesionalidad y ética demostrada durante todo este proceso. Esta conducta podría afectar a cualquiera de nuestros compañeros y creo que debe abordarse.
+
+Atentamente,
+[Su Nombre]
+
+
+
+
+
+
 
 
 
