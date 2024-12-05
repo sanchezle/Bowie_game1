@@ -97,6 +97,51 @@ Atentamente,
 [Tu Nombre Completo]
 
 These versions focus on clarity, professionalism, and evidence-based arguments. Let me know if you’d like further refinements.
+  
+
+this
+
+
+### English Version
+
+Subject: Urgent: Unfair Warning Due to Misunderstanding of Oath Certificate
+
+Dear [Recipient's Name],
+
+I am writing to formally express my concern regarding an unjust warning I received on November 8th. This warning stems from a misunderstanding related to the validity of my Oath Certificate for Spanish nationality, which my team manager, Mr. Tristan Billot, did not recognize as valid.
+
+Despite my repeated explanations that the Oath Certificate validly justified my absence on October 30th, Mr. Billot dismissed its validity without proper consideration. I urged him to consult further with other team members, but it appears he did not pursue this or did so inadequately, likely due to language barriers in both Spanish and English, which are essential in our workplace.
+
+I communicated the nature and importance of my appointment well in advance, both in internal chats and via email. Unfortunately, these efforts were not acknowledged, resulting in an unwarranted warning against me. I had not raised this issue earlier due to personal circumstances, including the recent passing of my father and the responsibilities related to his inheritance.
+
+I respectfully request a review of this situation, considering the evidence I have, including email correspondence and internal chat records. It is essential for fairness and team morale that such misunderstandings are addressed and rectified promptly.
+
+Thank you for your attention to this matter. I look forward to your response and the opportunity to discuss this further.
+
+Sincerely,
+[Your Full Name]
+
+---
+
+### Spanish Version
+
+Asunto: Urgente: Advertencia Injusta por Malentendido del Certificado de Jura
+
+Estimado/a [Nombre del Destinatario]:
+
+Me dirijo a usted para expresar formalmente mi preocupación con respecto a una advertencia injusta que recibí el 8 de noviembre. Dicha advertencia surge de un malentendido relacionado con la validez de mi Certificado de Jura de Nacionalidad Española, que mi jefe de equipo, el Sr. Tristan Billot, no reconoció como válido.
+
+A pesar de mis explicaciones repetidas de que el Certificado de Jura justificaba válidamente mi ausencia el 30 de octubre, el Sr. Billot desestimó su validez sin una consideración adecuada. Le insté a que consultara con otros miembros del equipo, pero parece que no lo hizo o lo hizo de manera inadecuada, probablemente debido a las barreras idiomáticas tanto en español como en inglés, que son esenciales en nuestro lugar de trabajo.
+
+Comuniqué la naturaleza e importancia de mi cita con antelación tanto por correo electrónico como por chat interno. Lamentablemente, estos esfuerzos no fueron reconocidos, resultando en una advertencia injusta en mi contra. No planteé este problema antes debido a circunstancias personales, incluido el reciente fallecimiento de mi padre y las responsabilidades relacionadas con su herencia.
+
+Solicito respetuosamente una revisión exhaustiva de esta situación, considerando las evidencias que poseo, incluyendo correspondencia por correo electrónico y registros de chat interno. Es esencial para la equidad y la moral del equipo que se aborden y corrijan estos malentendidos de manera pronta.
+
+Gracias por su atención a este asunto. Quedo a la espera de su respuesta y de la oportunidad de discutir este tema más a fondo.
+
+Atentamente,
+[Tu Nombre Completo]
+
 
 
 
