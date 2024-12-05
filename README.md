@@ -102,6 +102,20 @@ These versions focus on clarity, professionalism, and evidence-based arguments. 
 this
 
 
+I need you to add the following key takes to restructure the email.
+in the intruduction, make clear I got the warning because my tm trista bejot assured me that the document I wanted  to provide to justify my abacense was not valid for this mater, the document whas the oath certificaded for Spanish Nationality, 
+after the introduction add.
+in chronological order
+I informed my tm thirstan Bejot about my public duty On Octobuer 30 five days before verbally On October 30 I let him know I need to leave my work post at 09:00 am since the   appointment was at 10:40ambefore I left I left a note in my verint record stating that I was leaving for the nationallity oath and then I will return, when I returned I also recorded in verint.
+as soon as I returned, I let my tm Trista Bejot now that I did not get the 'justificante' but I had the oath certificate which I was sure it was valid enough to proof I went to the appointment that day at the appointment time, however   'they don't care about your documents they just want the justificante', then he suggeted me to 'call' the register office to request the justificante which no only i did but I went back to the register (registro civil  numero 2 de Barcelona) after I finish my shift at 03:30 when I requested the 'justificante' to which they told me the only solution was send an email to an email address they provided to me. which I did but I never got a replied.
+given that after several days(6 days but a holiday day friday 1 november saturday and sunday  monday 4 there was DANA alert I did not went back to the register office asking for the justificante)   till this day I haven't gotten a reply from the email I sent. 
+on tuesday 5 I inquiry again this time on workplace chat mr Bejot how should I proceed insisting that I didn't get the justificante from the register office but I had the oath certifcate that i is a quite valid document that proves I was the the register office that day, 
+and I kept insisting for the rest of the days that the oath certificated was valid proof and every time mr bejot  denied with absolut certainty that the document was not vaild. to which I told him to iqury further with other tms or stm to which he replid he would do, bot apparenlty he didn't do it or if it did it wasn't in a propper way
+finally on november 7 mr bejot told me I he was going to 'help' me , and he would give me some time of meeting for calling the office and get againg the justificante, while I also suggested I was going to send hime the otah certificated and other doccument attached  to the email, which I did on november 7 at 9:19.
+when I returned I told mr bejot I had sent him the email with the oath certificated and I kindly requested to check which obviously he did't do, since it was only days later when I informed him I had gotten a warning, tha he realized that the document we the  according to the same stm it had sanctioned me with the warning. on november 7 mr bejot suggested me to provide the documents trough the platfomr workday after I finished my shift. on november 8 I got the warning for 'not providing the document that proof my attendance to the appointemt' issue by the then senior team managger, Julio Miguel Arenas Arteta the very same stm that along with mr bejot had dismmised the oath of nationality certficaded as valid document and the very sam stm that after issuing the warnig finally checked the document and realized it was a valid document.
+after that day we had a meeting where both person very unenthicaly and unproffesionally deny their responsability in the whole situation. I haven't rised the issue till now since I have had my personal issue to address including the death of my father and other procesess related to my newlly aquiry nationality and I decided to prioritize such issue but I want to clarify what happened
+
+
 
 
 
