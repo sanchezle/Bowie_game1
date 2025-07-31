@@ -19,6 +19,7 @@ from email_contents import get_registration_email_content, get_password_reset_em
 load_dotenv()
 
 # Flask app configuration
+
 app = Flask(__name__)
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
@@ -52,6 +53,9 @@ facebook = oauth.register(
     client_kwargs={'scope': 'email'}
 )
 
+
+
+
 # Database configuration
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATABASE = os.path.join(BASE_DIR, "bowiegame.db")
@@ -62,6 +66,16 @@ def get_db():
     if not hasattr(g, '_database'):
         g._database = sqlite3.connect(DATABASE)
     return g._database
+
+def generate_provisional_username(base):
+    attempt = 1
+    while True:
+        provisional_username = f"{base}{attempt}"
+        result = db.execute("SELECT COUNT(*) as count FROM users WHERE username = ?", [provisional_username])
+        if result and result[0].get('count') == 0:
+            break
+        attempt += 1
+    return provisional_username
 
 @app.teardown_appcontext
 def close_connection(exception):
@@ -87,17 +101,13 @@ def authorize_google():
     user = db.execute("SELECT * FROM users WHERE email = ? AND oauth_provider = 'google'", email)
 
     if not user:
-        username = user_info['name']
+        base_username = user_info['name'].split()[0].lower()  # Using first name as base for username
+        username = generate_provisional_username(base_username)
         db.execute("INSERT INTO users (username, email, oauth_provider, oauth_id, email_confirmed) VALUES (?, ?, 'google', ?, TRUE)", username, email, oauth_id)
         user = db.execute("SELECT * FROM users WHERE email = ? AND oauth_provider = 'google'", email)
 
     session["user_id"] = user[0]["id"]
     return redirect(url_for('index'))
-
-@app.route('/login/facebook')
-def login_facebook():
-    redirect_uri = url_for('authorize_facebook', _external=True)
-    return facebook.authorize_redirect(redirect_uri)
 
 @app.route('/authorize/facebook')
 def authorize_facebook():
@@ -108,12 +118,20 @@ def authorize_facebook():
     user = db.execute("SELECT * FROM users WHERE email = ? AND oauth_provider = 'facebook'", email)
 
     if not user:
-        username = user_info['name']
+        base_username = user_info['name'].split()[0].lower()  # Using first name as base for username
+        username = generate_provisional_username(base_username)
         db.execute("INSERT INTO users (username, email, oauth_provider, oauth_id, email_confirmed) VALUES (?, ?, 'facebook', ?, TRUE)", username, email, oauth_id)
         user = db.execute("SELECT * FROM users WHERE email = ? AND oauth_provider = 'facebook'", email)
 
     session["user_id"] = user[0]["id"]
     return redirect(url_for('index'))
+
+
+@app.route('/login/facebook')
+def login_facebook():
+    redirect_uri = url_for('authorize_facebook', _external=True)
+    return facebook.authorize_redirect(redirect_uri)
+
 
 # Routes
 @app.route('/')
