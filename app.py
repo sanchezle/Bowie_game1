@@ -21,6 +21,12 @@ load_dotenv()
 # Flask app configuration
 
 app = Flask(__name__)
+
+# Configuration for subpath deployment
+app.config["APPLICATION_ROOT"] = "/projects/bowiegame"
+app.config["PREFERRED_URL_SCHEME"] = "https"
+app.config["SERVER_NAME"] = os.getenv("SERVER_NAME", "luis-dev-lab.com")
+
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
