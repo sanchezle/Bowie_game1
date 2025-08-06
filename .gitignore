@@ -3,6 +3,9 @@ Bowie_game_este/
 bowiegame.db
 actualdb/
 
+# Large installation files
+*.deb
+
 __pycache__/bowiegame.cpython-36.pyc
 __pycache__/
 
