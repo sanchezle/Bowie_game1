@@ -1,0 +1,30 @@
+# Database directories - avoid overwriting existing data on target device
+actualdb/
+bowiegame.db
+
+# Development files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+.env
+.venv
+venv/
+
+# Session files
+flask_session/
+
+# Git files
+.git
+.gitignore
+
+# Documentation
+README.md
+TODO.md
+
+# Development tools
+others/
+
+# Test files
+tests/
