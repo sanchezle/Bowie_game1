@@ -44,30 +44,44 @@ def is_valid_password(password):
 
 
 # helpers.py
-from sendgrid import SendGridAPIClient
-from sendgrid.helpers.mail import Mail
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 
 def send_confirmation_email(to_email, subject, html_content):
-    api_key = os.getenv('SENDGRID_API_KEY')
-    from_email = os.getenv('SENDGRID_FROM_EMAIL')  # Retrieve the sender's email from environment variable
-
-    sendgrid_client = SendGridAPIClient(api_key)
-
-    message = Mail(
-        from_email=from_email,
-        to_emails=to_email,
-        subject=subject,
-        html_content=html_content
-    )
-
-    # Sending the email
+    gmail_user = os.getenv('GMAIL_USER')  # bowiegame01@gmail.com
+    gmail_password = os.getenv('GMAIL_PASSWORD')  # Your Gmail password
+    
+    if not gmail_user or not gmail_password:
+        print("Gmail credentials not configured")
+        return False
+    
     try:
-        response = sendgrid_client.send(message)
-        print(response.status_code)
-        print(response.body)
-        print(response.headers)
+        # Create message
+        msg = MIMEMultipart('alternative')
+        msg['Subject'] = subject
+        msg['From'] = gmail_user
+        msg['To'] = to_email
+        
+        # Add HTML content
+        html_part = MIMEText(html_content, 'html')
+        msg.attach(html_part)
+        
+        # Connect to Gmail SMTP server using SSL (port 465)
+        server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
+        server.login(gmail_user, gmail_password)
+        
+        # Send email
+        text = msg.as_string()
+        server.sendmail(gmail_user, to_email, text)
+        server.quit()
+        
+        print(f"Email sent successfully to {to_email}")
+        return True
+        
     except Exception as e:
-        print(str(e))  # Improved exception handling
+        print(f"Error sending email: {str(e)}")
+        return False
 
 
 import bcrypt

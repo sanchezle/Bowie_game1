@@ -14,8 +14,8 @@ services:
       - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
       - FACEBOOK_CLIENT_ID=${FACEBOOK_CLIENT_ID}
       - FACEBOOK_CLIENT_SECRET=${FACEBOOK_CLIENT_SECRET}
-      - SENDGRID_API_KEY=${SENDGRID_API_KEY}
-      - FROM_EMAIL=${FROM_EMAIL}
+      - GMAIL_USER=${GMAIL_USER}
+      - GMAIL_PASSWORD=${GMAIL_PASSWORD}
     volumes:
       - ./bowiegame.db:/app/bowiegame.db
       - ./flask_session:/app/flask_session
