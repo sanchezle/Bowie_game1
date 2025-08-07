@@ -64,7 +64,7 @@ facebook = oauth.register(
 
 # Database configuration
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-DATABASE = os.path.join(BASE_DIR, "bowiegame.db")
+DATABASE = os.path.join(BASE_DIR, "actualdb", "bowiegame.db")
 db = SQL(f"sqlite:///{DATABASE}")
 
 # Utility functions for database connection
@@ -340,5 +340,5 @@ def update_instructions():
     return redirect(url_for('game'))
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='127.0.0.1', port=5003, debug=True)
 
