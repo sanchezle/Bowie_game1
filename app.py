@@ -1,5 +1,6 @@
 import os
 import secrets
+import sqlite3
 import uuid
 from datetime import datetime, timedelta
 
@@ -264,7 +265,7 @@ def recover_user():
             return render_template('recover_user.html', message='Invalid token', users_to_recover=users_to_recover)
         hashed_password = generate_password_hash(new_password)
         db.execute("UPDATE users SET hash = ?, recover_user_token = NULL WHERE username = ?", hashed_password, username)
-        verification_token = str.uuid.uuid4()
+        verification_token = str(uuid.uuid4())
         db.execute("UPDATE users SET verification_token = ? WHERE username = ?", verification_token, username)
         recovery_link = url_for('verify_email', token=verification_token, _external=True)
         send_confirmation_email(email, "User Recovery Confirmation", get_user_recovery_email_content(recovery_link))

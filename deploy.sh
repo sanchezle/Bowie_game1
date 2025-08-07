@@ -53,9 +53,9 @@ GOOGLE_CLIENT_SECRET=your-google-client-secret
 FACEBOOK_CLIENT_ID=your-facebook-client-id
 FACEBOOK_CLIENT_SECRET=your-facebook-client-secret
 
-# Email Configuration
-SENDGRID_API_KEY=your-sendgrid-api-key
-FROM_EMAIL=your-email@domain.com
+# Email Configuration (Gmail SMTP)
+GMAIL_USER=your-gmail@gmail.com
+GMAIL_PASSWORD=your-gmail-app-password
 
 # Database Configuration
 DATABASE_URL=sqlite:///bowiegame.db
